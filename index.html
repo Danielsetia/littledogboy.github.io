@@ -166,8 +166,8 @@
     <article id="post-3DTouch-一-静态元素快速掌握" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/01/02/3DTouch-一-静态元素快速掌握/" class="article-date">
-  	<time datetime="2016-01-02T13:28:03.000Z" itemprop="datePublished">2016-01-02</time>
+      <a href="/2016/01/27/3DTouch-一-静态元素快速掌握/" class="article-date">
+  	<time datetime="2016-01-27T05:41:17.000Z" itemprop="datePublished">2016-01-27</time>
 </a>
     </div>
   
@@ -180,7 +180,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/02/3DTouch-一-静态元素快速掌握/">3DTouch(一)静态按钮快速掌握</a>
+      <a class="article-title" href="/2016/01/27/3DTouch-一-静态元素快速掌握/">3DTouch(一)静态按钮快速掌握</a>
     </h1>
   
 
@@ -200,49 +200,6 @@
 <li>pop (commit)    打开</li>
 <li>force properties 压力属性</li>
 </ul>
-<h2 id="快捷静态操作">快捷静态操作</h2><p>静态快捷操作，需要配置 <code>info.plist</code> ，仅适用于 iOS9.0 以及之后的版本，并且支持3DTouch 功能的设备。</p>
-<p><img src="./images/info配置.png" alt=""></p>
-<p>如下所示：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>UIApplicationShortcutItems<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">array</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="title">key</span>&gt;</span>UIApplicationShortcutItemIconType<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="title">string</span>&gt;</span>UIApplicationShortcutIconTypeSearch<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="title">key</span>&gt;</span>UIApplicationShortcutItemTitle<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="title">string</span>&gt;</span>Search<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="title">key</span>&gt;</span>UIApplicationShortcutItemType<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="title">string</span>&gt;</span>com.dongfang.huanxiangxiang.search<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="title">key</span>&gt;</span>UIApplicationShortcutItemSubtitle<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="title">string</span>&gt;</span>playWithLingmeng<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="title">key</span>&gt;</span>UIApplicationShortcutItemIconFile<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="title">string</span>&gt;</span>自定义3dTouch图标<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">key</span>&gt;</span>UIApplicationShortcutItemUserInfo<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">key</span>&gt;</span>key2<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">string</span>&gt;</span>value2<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="title">array</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>UIApplicationShortcutItemType    元素类型 （必须设置）</li>
-<li>UIApplicationShortcutItemTitle   元素标题（必须设置的）</li>
-<li>UIApplicationShortcutItemIconType  图标样式</li>
-<li>UIApplicationShortcutItemIconFile  自定义图标</li>
-<li>UIApplicationShortcutItemSubtitle  子标题</li>
-<li>UIApplicationShortcutItemUserInfo  元素信息</li>
-</ul>
-<h3 id="UIApplicationShortcutItemType_快捷元素类型">UIApplicationShortcutItemType  快捷元素类型</h3><p><code>UIApplicationShortcutItemType</code>  <strong><code>必须设置</code></strong>。 类型的作用是:表示我们这个快捷元素的标识 ，如果设置了多个快捷元素，那么通过 ItemType 来区分我们现在点击的是哪一个图标。</p>
-<p>key 对应的value 字符串命名规则是<code>com.公司名.app名.图标作用名</code></p>
-<p>例如：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>UIApplicationShortcutItemType<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>com.dongfang.huanxiangxiang.search<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>区别点击是哪个图标：</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#pragma mark- 3DTouch </span></span><br><span class="line"><span class="comment">// 当我们点击 主界面上的，3DTouch 图标时触发。</span></span><br><span class="line">- (<span class="keyword">void</span>)application:(<span class="built_in">UIApplication</span> *)application performActionForShortcutItem:(<span class="built_in">UIApplicationShortcutItem</span> *)shortcutItem completionHandler:(<span class="keyword">void</span> (^)(<span class="built_in">BOOL</span>))completionHandler</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 根据快捷图标的类型，判断我们点击的是哪个快捷图标</span></span><br><span class="line">    <span class="keyword">if</span> ([shortcutItem<span class="variable">.type</span> isEqualToString:<span class="string">@"com.dongfang.huanxiangxiang.search"</span>]) &#123;</span><br><span class="line">        <span class="comment">// 进入搜索界面。</span></span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"搜索"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="UIApplicationShortcutItemTitle_快捷元素标题">UIApplicationShortcutItemTitle 快捷元素标题</h3><p><img src="./images/标题.jpg" alt=""></p>
-<p><code>UIApplicationShortcutItemTitle</code> <strong><code>必须设置</code></strong>。 标题的作用是：描述快捷元素的作用。</p>
-<p>例如：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>UIApplicationShortcutItemTitle<span class="tag">&lt;/<span class="title">key</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>Search<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="UIApplicationShortcutItemIconType_快捷元素图标样式">UIApplicationShortcutItemIconType  快捷元素图标样式</h3><p><code>UIApplicationShortcutItemIconType</code> <strong><code>可选</code></strong>。 设置了图标样式，则显示图标。如果设置图标样式，则只显示标题，没有图标。</p>
-<p>如图所示：</p>
-<p>系统默认给我们提供了许多中常用图标样式，比如，搜索 <code>UIApplicationShortcutIconTypeSearch</code>等。 也可以在 Api中查看，系统提供的所有图标样式。 <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationShortcutIcon_Class/index.html#//apple_ref/c/tdef/UIApplicationShortcutIconType" target="_blank" rel="external">苹果官方文档</a></p>
-<h3 id="UIApplicationShortcutItemSubtitle_快捷元素子标题">UIApplicationShortcutItemSubtitle 快捷元素子标题</h3><p><img src="./images/子标题系统图标.jpg" alt=""></p>
-<p><code>UIApplicationShortcutItemSubtitle</code> <strong><code>可选</code></strong>。 子标题，是对标题的一个补充说明。只能显示一行，如果超出一行则后面显示为省略号。</p>
-<p>例如：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>UIApplicationShortcutItemSubtitle<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>playWithLingmeng<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="UIApplicationShortcutItemIconFile_快捷元素自定义图标">UIApplicationShortcutItemIconFile 快捷元素自定义图标</h3><p><img src="./images/自定义图标.jpg" alt=""></p>
-<p><code>UIApplicationShortcutItemIconFile</code>  <strong><code>可选</code></strong> ，如果设置IconFile，则为自定义图标。需要注意的是，自定义图标对 图片有要求。</p>
-<p>自定义图标要求：  </p>
-<ol>
-<li><code>方形像素</code>，<code>单色</code>（不能有彩色，只能是黑白），并且图像大小为 <code>35 * 35</code> 个点（points）。</li>
-<li>图片必须在 工程里面，或者在 <code>Assets.xcassets</code> 文件夹里面。</li>
-</ol>
-<p>注意: 如果我们给同一个元素，设置了自定义图标，同时也设置了系统类型图标，那么会忽略系统类型图标。</p>
-<p>例如:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>UIApplicationShortcutItemIconFile<span class="tag">&lt;/<span class="title">key</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>自定义3dTouch图标<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="UIApplicationShortcutItemUserInfo_快捷元素信息">UIApplicationShortcutItemUserInfo  快捷元素信息</h3><p><code>UIApplicationShortcutItemUserInfo</code>  <strong><code>可选</code></strong> , 对应的Value为 <code>字典类型</code> 其中一个作用为：提供应用程序的版本信息。</p>
-<p>比如： </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>UIApplicationShortcutItemUserInfo<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">key</span>&gt;</span>key2<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">string</span>&gt;</span>value2<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
       
     </div>
     
@@ -255,6 +212,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/27/3DTouch-一-静态元素快速掌握/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -583,14 +544,18 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 Shumin Wu
+    	 &copy; 2016 Shumin Wu
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
       	</div>
+        <div class="footer-center">
+          <a href="http://www.miibeian.gov.cn" target="_blank">豫ICP备16002850号</a>
+        </div>
     </div>
   </div>
 </footer>
+
     </div>
     
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
