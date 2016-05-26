@@ -3,24 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>记心里的一些想法 | Shumin Wu の 魔法协会</title>
+  <title>iOS 布局中的那些坑 | Shumin Wu の 魔法协会</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记心里的一些话以前的我总是在踌躇，不知道自己该怎么走今后的方向。 是出去干开发， 还是留在这里继续教学。
-我发现自己已经不知道该怎么面对学生了，如何面对一些，连键盘都不熟悉的学生。这两天，班里有一个完全没有任何基础的王同学，和一个平同学，当一天有同学问我，&amp;quot;&amp;quot; 引号应该怎么用键盘打出来的时候。 我就不知道到底应该怎么把后面的一些基本的编程思想和算法告诉给他们。
-关于编程思想 和">
+  <meta name="description" content="iOS 布局中的那些坑automaticallyAdjustsScrollViewInsets 属性导航条影响 scrollView 及其子类的偏移量在 iOS 开发中，我们有时候会遇到系统默认生成的一些布局，一些默认的顶部偏移量等。 比如：如果 navigationBar下面直接是一个scrollView或者其子类。那么scrollView 及其子类 内部布局会从（0，64）开始，自动向下偏移6">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记心里的一些想法">
-<meta property="og:url" content="http://littledogboy.github.io/2016/03/26/记心里的一些想法/index.html">
+<meta property="og:title" content="iOS 布局中的那些坑">
+<meta property="og:url" content="http://littledogboy.github.io/2016/05/26/iOS-布局中的那些坑/index.html">
 <meta property="og:site_name" content="Shumin Wu の 魔法协会">
-<meta property="og:description" content="记心里的一些话以前的我总是在踌躇，不知道自己该怎么走今后的方向。 是出去干开发， 还是留在这里继续教学。
-我发现自己已经不知道该怎么面对学生了，如何面对一些，连键盘都不熟悉的学生。这两天，班里有一个完全没有任何基础的王同学，和一个平同学，当一天有同学问我，&amp;quot;&amp;quot; 引号应该怎么用键盘打出来的时候。 我就不知道到底应该怎么把后面的一些基本的编程思想和算法告诉给他们。
-关于编程思想 和">
-<meta property="og:updated_time" content="2016-03-25T16:32:07.000Z">
+<meta property="og:description" content="iOS 布局中的那些坑automaticallyAdjustsScrollViewInsets 属性导航条影响 scrollView 及其子类的偏移量在 iOS 开发中，我们有时候会遇到系统默认生成的一些布局，一些默认的顶部偏移量等。 比如：如果 navigationBar下面直接是一个scrollView或者其子类。那么scrollView 及其子类 内部布局会从（0，64）开始，自动向下偏移6">
+<meta property="og:image" content="http://littledogboy.github.io/images/01_tableView.jpg">
+<meta property="og:image" content="http://littledogboy.github.io/images/02.jpg">
+<meta property="og:image" content="http://littledogboy.github.io/images/03.png">
+<meta property="og:image" content="http://littledogboy.github.io/images/未设置边缘布局.gif">
+<meta property="og:image" content="http://littledogboy.github.io/images/已设置边缘布局.gif">
+<meta property="og:updated_time" content="2016-05-26T14:15:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记心里的一些想法">
-<meta name="twitter:description" content="记心里的一些话以前的我总是在踌躇，不知道自己该怎么走今后的方向。 是出去干开发， 还是留在这里继续教学。
-我发现自己已经不知道该怎么面对学生了，如何面对一些，连键盘都不熟悉的学生。这两天，班里有一个完全没有任何基础的王同学，和一个平同学，当一天有同学问我，&amp;quot;&amp;quot; 引号应该怎么用键盘打出来的时候。 我就不知道到底应该怎么把后面的一些基本的编程思想和算法告诉给他们。
-关于编程思想 和">
+<meta name="twitter:title" content="iOS 布局中的那些坑">
+<meta name="twitter:description" content="iOS 布局中的那些坑automaticallyAdjustsScrollViewInsets 属性导航条影响 scrollView 及其子类的偏移量在 iOS 开发中，我们有时候会遇到系统默认生成的一些布局，一些默认的顶部偏移量等。 比如：如果 navigationBar下面直接是一个scrollView或者其子类。那么scrollView 及其子类 内部布局会从（0，64）开始，自动向下偏移6">
   
     <link rel="alternative" href="/atom.xml" title="Shumin Wu の 魔法协会" type="application/atom+xml">
   
@@ -168,11 +167,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-记心里的一些想法" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="ios-iOS-布局中的那些坑" class="article article-type-ios" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/26/记心里的一些想法/" class="article-date">
-  	<time datetime="2016-03-25T16:29:22.000Z" itemprop="datePublished">2016-03-26</time>
+      <a href="/2016/05/26/iOS-布局中的那些坑/" class="article-date">
+  	<time datetime="2016-05-26T14:10:40.000Z" itemprop="datePublished">2016-05-26</time>
 </a>
     </div>
   
@@ -185,7 +184,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      记心里的一些想法
+      iOS 布局中的那些坑
     </h1>
   
 
@@ -194,7 +193,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/己亥杂言/">己亥杂言</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS布局/">iOS布局</a></li></ul>
 	</div>
 
         
@@ -205,17 +204,34 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="记心里的一些话">记心里的一些话</h2><p>以前的我总是在踌躇，不知道自己该怎么走今后的方向。 是出去干开发， 还是留在这里继续教学。</p>
-<p>我发现自己已经不知道该怎么面对学生了，如何面对一些，连键盘都不熟悉的学生。这两天，班里有一个完全没有任何基础的王同学，和一个平同学，当一天有同学问我，<code>&quot;&quot;</code> 引号应该怎么用键盘打出来的时候。 我就不知道到底应该怎么把后面的一些基本的编程思想和算法告诉给他们。</p>
-<p>关于编程思想 和 算法这些东西，其实我自己也不知道多少，知道的仅是可以勉强教给一些小朋友而已。可是，我所说的这些小朋友，不包含连键盘也不知道怎么使用的这部分小朋友。</p>
-<p>之前任何基础都没有的同学，就像王同学 和 平同学，同时还有其他同学。在入学面谈,我问他们,你是为什么选择编程这条路的时候,王同学 和 平同学的答案是:”我之前有朋友告诉我，学这个现在工资挺高的”。 同样有个没有基础的学生说:”我觉得学会这个可以掌握一门技能，通过这门技能我或许可以走的更远”。</p>
-<p>这个给我希望可以走的更远答案的这个学生，坐在第一排。他令我回忆起了自己还是一个刚入学的只会打游戏的小愤青，在大学教室里回答政治老师的“你觉得什么是大学，你在大学的目标是什么？” 问题时，睥睨着小眼，说出——“我觉得大学是自由和坚持，当然还有性”，我觉得自己永远也忘不了，自己后面的答案:”我想在大学四年间努力学习，并且成为一个合格的计算机人才“。 </p>
-<p>当前，大学里什么也没有教会我，没有教会我性，我也没有成为一个合格的计算机人才。虽然，在大学四年四处发力，完全没有停下渴求技术的脚步。可是最终还是没有任何结果，在别人看来或许我就像一条将要溺死的狗，虽然已经爬上了岸，但还在恐慌得朝着空气滑动四肢一样。</p>
-<p>经历过无助的我，更是知道走编程这条路的可怕。借用，一下，今天一位前辈离职文中最后的一段话：“互联网就是变化的如此快，有多么高的巅峰就有多么深的低谷。拥抱变化，这个披着正向价值观的口号，它有个不愿意被人提起的本质：‘若肉强食’，只有足够强大、足够勤奋或足够聪明才能在这里快的的工作下去吧。”</p>
-<p>互联网就是这样，变化太快。前面的人还没有刚冲进去，后一波浪潮就过来了。可总是有那么一波人，在这个快要被淹死的时代能抱着石头潜下去，这是不会游泳的人用的一招，潜下去很深，静静得望着上面，默默成长，默默等待。等上面不那么喧嚣了，再抱着石头走上来。 这些人，总是可以在技术道路上走得很远很远，对于他们来说，没有不努力，没有不奋斗，因为他们知道羞耻，当然也或许是自卑。</p>
-<p>可是对于这部分认真、努力到让我落泪的人，我唯有充满敬仰。我唯恐喝彩了一声，就是对他们的亵渎。唯有努力眨干眼睛里的泪水，再带着笑容看着他们。</p>
-<p>所以，对于一些连键盘都不熟悉，就觉得编程这条路好走的同学。我此时站在他们的面前，他问着我 <code>&quot;&quot;</code> 引号怎么打，问我“老师我这个鼠标怎么动不了了”。 我突然想失声痛哭，我觉得自己对不起昨天那个说出想要成为“合格的专业人才”的影子；也对不起那个给我“想掌握一门技术，希望自己可以走得更远……”的第一组学生。 我觉得自己好像亵渎了那些努力奋斗的人，侮辱了那些即便很苦还是在加班到很晚敲代码的人，玷污了那些做了很多前期准备，摩拳擦掌跃跃欲试进入这个区域的清湛面孔。</p>
-<p>虽然小子不才，是个编程渣滓，可是仍有这么一块领土，不允许别人践踏——请不要问我 <code>&quot;</code> 引号怎么打。 谢谢。</p>
+        <h1 id="iOS_布局中的那些坑">iOS 布局中的那些坑</h1><h2 id="automaticallyAdjustsScrollViewInsets_属性">automaticallyAdjustsScrollViewInsets 属性</h2><h3 id="导航条影响_scrollView_及其子类的偏移量">导航条影响 scrollView 及其子类的偏移量</h3><p>在 iOS 开发中，我们有时候会遇到系统默认生成的一些布局，一些默认的顶部偏移量等。 比如：如果 navigationBar下面直接是一个scrollView或者其子类。那么scrollView 及其子类 内部布局会从（0，64）开始，自动向下偏移64个点。这当然是极好的，不需要我们手动调整。 64pt = 状态栏高度20pt + 导航栏高度44pt。</p>
+<p>如图所示：一个tableViewController被设置为 navigatiViewController 的根视图。</p>
+<div align="center"><br><img src="/images/01_tableView.jpg" width="200" align="center"><br></div>
+
+
+
+<h3 id="隐藏导航条，状态栏仍然会影响_scrollView_的偏移量">隐藏导航条，状态栏仍然会影响 scrollView 的偏移量</h3><p>有些时候把 NavigationBar 给隐藏掉，然后在 controller.view 上 添加一个自定义的 scrollView ，发现scrollView 这次向下偏移了 20pt，这20pt 是状态栏的高度。</p>
+<p>如左边图所示： 隐藏了导航栏，添加了一个scrollView，scrollView 中的内容向下偏移了 20pt。</p>
+<div align="center"><br><img src="/images/02.jpg" width="200" align="center"><br></div>
+
+<h3 id="解决方法:自动调整滚动视图内边距设置为_No">解决方法:自动调整滚动视图内边距设置为 No</h3><p>iOS7.0 之后，在 UIViewController 中有一个属性。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@property(nonatomic,assign) BOOL automaticallyAdjustsScrollViewInsets NS_AVAILABLE_IOS(7_0); // Defaults to YES</span><br></pre></td></tr></table></figure>
+<p>该属性默认为 YES，只需要设置为 NO，scrollView的偏移量为（0，0）。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.automaticallyAdjustsScrollViewInsets = NO;</span><br></pre></td></tr></table></figure>
+<p>如图所示：</p>
+<div align="center"><br><img src="/images/03.png" width="200" align="center"><br></div>
+
+<h2 id="edgesForExtendedLayout_属性">edgesForExtendedLayout 属性</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@property(nonatomic, assign) UIRectEdge edgesForExtendedLayout</span><br></pre></td></tr></table></figure>
+<p>在 iOS 7 中，苹果在视图控制器中引入了一个新的属性，edgesForExtendedLayout。 </p>
+<p>该属性只影响容器视图控制器中的子视图控制器，比如，在父控制器为UINavigationViewController的控制器。 而对于window 的根视图控制器，并没有作用。</p>
+<p>该属性决定了 controller.view 的布局方式，比如当容器控制器为 UINavigationViewController 时，子控制器view的布局 默认从navigationbar 的顶部开始。这会造成导航栏遮盖住下面的 view。如下图所示：</p>
+<div align="center"><br><img src="/images/未设置边缘布局.gif" width="200" align="center"><br></div>
+
+<p>edgesForExtendedLayout 默认的返回值为 <code>UIRectEdgeAll</code>, 我们可以 设置为 <code>UIRectEdgeNone</code> 或者 <code>UIRectEdgeBottom</code>，解决问题。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#ifdef __IPHONE_7_0&#10;- (UIRectEdge)edgesForExtendedLayout&#10;&#123;&#10;    return UIRectEdgeNone; //  bottom &#25110;&#32773; None&#10;&#125;&#10;#endif</span><br></pre></td></tr></table></figure>
+<div align="center"><br><img src="/images/已设置边缘布局.gif" width="200" align="center"><br></div>
+
+
 
       
     </div>
@@ -225,18 +241,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/05/26/iOS-布局中的那些坑/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          iOS 布局中的那些坑
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/01/08/3DTouch-一-静态元素快速掌握/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">3DTouch(一)静态按钮快速掌握</div>
+    <a href="/2016/03/26/记心里的一些想法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">记心里的一些想法</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -265,7 +272,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="记心里的一些想法" data-title="记心里的一些想法" data-url="http://littledogboy.github.io/2016/03/26/记心里的一些想法/"></div>
+	<div class="ds-thread" data-thread-key="iOS-布局中的那些坑" data-title="iOS 布局中的那些坑" data-url="http://littledogboy.github.io/2016/05/26/iOS-布局中的那些坑/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

@@ -103,7 +103,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/3DTouch/" style="font-size: 10px;">3DTouch</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/动漫/" style="font-size: 10px;">动漫</a> <a href="/tags/己亥杂言/" style="font-size: 10px;">己亥杂言</a>
+						<a href="/tags/3DTouch/" style="font-size: 10px;">3DTouch</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/iOS布局/" style="font-size: 10px;">iOS布局</a> <a href="/tags/动漫/" style="font-size: 10px;">动漫</a> <a href="/tags/己亥杂言/" style="font-size: 10px;">己亥杂言</a>
 					</div>
 				</section>
 				
@@ -162,6 +162,88 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="ios-iOS-布局中的那些坑" class="article article-type-ios" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/26/iOS-布局中的那些坑/" class="article-date">
+  	<time datetime="2016-05-26T14:10:40.000Z" itemprop="datePublished">2016-05-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/26/iOS-布局中的那些坑/">iOS 布局中的那些坑</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="iOS_布局中的那些坑">iOS 布局中的那些坑</h1><h2 id="automaticallyAdjustsScrollViewInsets_属性">automaticallyAdjustsScrollViewInsets 属性</h2><h3 id="导航条影响_scrollView_及其子类的偏移量">导航条影响 scrollView 及其子类的偏移量</h3><p>在 iOS 开发中，我们有时候会遇到系统默认生成的一些布局，一些默认的顶部偏移量等。 比如：如果 navigationBar下面直接是一个scrollView或者其子类。那么scrollView 及其子类 内部布局会从（0，64）开始，自动向下偏移64个点。这当然是极好的，不需要我们手动调整。 64pt = 状态栏高度20pt + 导航栏高度44pt。</p>
+<p>如图所示：一个tableViewController被设置为 navigatiViewController 的根视图。</p>
+<div align="center"><br><img src="/images/01_tableView.jpg" width="200" align="center"><br></div>
+
+
+
+<h3 id="隐藏导航条，状态栏仍然会影响_scrollView_的偏移量">隐藏导航条，状态栏仍然会影响 scrollView 的偏移量</h3><p>有些时候把 NavigationBar 给隐藏掉，然后在 controller.view 上 添加一个自定义的 scrollView ，发现scrollView 这次向下偏移了 20pt，这20pt 是状态栏的高度。</p>
+<p>如左边图所示： 隐藏了导航栏，添加了一个scrollView，scrollView 中的内容向下偏移了 20pt。</p>
+<div align="center"><br><img src="/images/02.jpg" width="200" align="center"><br></div>
+
+<h3 id="解决方法:自动调整滚动视图内边距设置为_No">解决方法:自动调整滚动视图内边距设置为 No</h3><p>iOS7.0 之后，在 UIViewController 中有一个属性。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@property(nonatomic,assign) BOOL automaticallyAdjustsScrollViewInsets NS_AVAILABLE_IOS(7_0); // Defaults to YES</span><br></pre></td></tr></table></figure>
+<p>该属性默认为 YES，只需要设置为 NO，scrollView的偏移量为（0，0）。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.automaticallyAdjustsScrollViewInsets = NO;</span><br></pre></td></tr></table></figure>
+<p>如图所示：</p>
+<div align="center"><br><img src="/images/03.png" width="200" align="center"><br></div>
+
+<h2 id="edgesForExtendedLayout_属性">edgesForExtendedLayout 属性</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@property(nonatomic, assign) UIRectEdge edgesForExtendedLayout</span><br></pre></td></tr></table></figure>
+<p>在 iOS 7 中，苹果在视图控制器中引入了一个新的属性，edgesForExtendedLayout。 </p>
+<p>该属性只影响容器视图控制器中的子视图控制器，比如，在父控制器为UINavigationViewController的控制器。 而对于window 的根视图控制器，并没有作用。</p>
+<p>该属性决定了 controller.view 的布局方式，比如当容器控制器为 UINavigationViewController 时，子控制器view的布局 默认从navigationbar 的顶部开始。这会造成导航栏遮盖住下面的 view。如下图所示：</p>
+<div align="center"><br><img src="/images/未设置边缘布局.gif" width="200" align="center"><br></div>
+
+<p>edgesForExtendedLayout 默认的返回值为 <code>UIRectEdgeAll</code>, 我们可以 设置为 <code>UIRectEdgeNone</code> 或者 <code>UIRectEdgeBottom</code>，解决问题。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#ifdef __IPHONE_7_0&#10;- (UIRectEdge)edgesForExtendedLayout&#10;&#123;&#10;    return UIRectEdgeNone; //  bottom &#25110;&#32773; None&#10;&#125;&#10;#endif</span><br></pre></td></tr></table></figure>
+<div align="center"><br><img src="/images/已设置边缘布局.gif" width="200" align="center"><br></div>
+
+
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS布局/">iOS布局</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
   
     <article id="post-记心里的一些想法" class="article article-type-post" itemscope itemprop="blogPost">
   
