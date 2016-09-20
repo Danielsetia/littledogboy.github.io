@@ -5,21 +5,21 @@
   
   <title>iOS 布局中的那些坑 | Shumin Wu の 魔法协会</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="iOS 布局中的那些坑automaticallyAdjustsScrollViewInsets 属性导航条影响 scrollView 及其子类的偏移量在 iOS 开发中，我们有时候会遇到系统默认生成的一些布局，一些默认的顶部偏移量等。 比如：如果 navigationBar下面直接是一个scrollView或者其子类。那么scrollView 及其子类 内部布局会从（0，64）开始，自动向下偏移6">
+  <meta name="description" content="automaticallyAdjustsScrollViewInsets 属性导航条影响 scrollView 及其子类的偏移量在 iOS 开发中，我们有时候会遇到系统默认生成的一些布局，一些默认的顶部偏移量等。 比如：如果 navigationBar下面直接是一个scrollView或者其子类。那么scrollView 及其子类 内部布局会从（0，64）开始，自动向下偏移64个点。这当然是极好的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS 布局中的那些坑">
 <meta property="og:url" content="http://littledogboy.github.io/2016/05/26/iOS-布局中的那些坑/index.html">
 <meta property="og:site_name" content="Shumin Wu の 魔法协会">
-<meta property="og:description" content="iOS 布局中的那些坑automaticallyAdjustsScrollViewInsets 属性导航条影响 scrollView 及其子类的偏移量在 iOS 开发中，我们有时候会遇到系统默认生成的一些布局，一些默认的顶部偏移量等。 比如：如果 navigationBar下面直接是一个scrollView或者其子类。那么scrollView 及其子类 内部布局会从（0，64）开始，自动向下偏移6">
+<meta property="og:description" content="automaticallyAdjustsScrollViewInsets 属性导航条影响 scrollView 及其子类的偏移量在 iOS 开发中，我们有时候会遇到系统默认生成的一些布局，一些默认的顶部偏移量等。 比如：如果 navigationBar下面直接是一个scrollView或者其子类。那么scrollView 及其子类 内部布局会从（0，64）开始，自动向下偏移64个点。这当然是极好的">
 <meta property="og:image" content="http://littledogboy.github.io/images/01_tableView.jpg">
 <meta property="og:image" content="http://littledogboy.github.io/images/02.jpg">
-<meta property="og:image" content="http://littledogboy.github.io/images/03.png">
+<meta property="og:image" content="http://littledogboy.github.io/images/03.jpg">
 <meta property="og:image" content="http://littledogboy.github.io/images/未设置边缘布局.gif">
 <meta property="og:image" content="http://littledogboy.github.io/images/已设置边缘布局.gif">
-<meta property="og:updated_time" content="2016-05-26T14:15:26.000Z">
+<meta property="og:updated_time" content="2016-09-20T20:45:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 布局中的那些坑">
-<meta name="twitter:description" content="iOS 布局中的那些坑automaticallyAdjustsScrollViewInsets 属性导航条影响 scrollView 及其子类的偏移量在 iOS 开发中，我们有时候会遇到系统默认生成的一些布局，一些默认的顶部偏移量等。 比如：如果 navigationBar下面直接是一个scrollView或者其子类。那么scrollView 及其子类 内部布局会从（0，64）开始，自动向下偏移6">
+<meta name="twitter:description" content="automaticallyAdjustsScrollViewInsets 属性导航条影响 scrollView 及其子类的偏移量在 iOS 开发中，我们有时候会遇到系统默认生成的一些布局，一些默认的顶部偏移量等。 比如：如果 navigationBar下面直接是一个scrollView或者其子类。那么scrollView 及其子类 内部布局会从（0，64）开始，自动向下偏移64个点。这当然是极好的">
   
     <link rel="alternative" href="/atom.xml" title="Shumin Wu の 魔法协会" type="application/atom+xml">
   
@@ -109,7 +109,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/3DTouch/" style="font-size: 10px;">3DTouch</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/iOS布局/" style="font-size: 10px;">iOS布局</a> <a href="/tags/动漫/" style="font-size: 10px;">动漫</a> <a href="/tags/己亥杂言/" style="font-size: 10px;">己亥杂言</a>
+						<a href="/tags/3DTouch/" style="font-size: 10px;">3DTouch</a> <a href="/tags/AVFoundation/" style="font-size: 10px;">AVFoundation</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/iOS布局/" style="font-size: 10px;">iOS布局</a> <a href="/tags/动漫/" style="font-size: 10px;">动漫</a> <a href="/tags/己亥杂言/" style="font-size: 10px;">己亥杂言</a> <a href="/tags/视频播放/" style="font-size: 10px;">视频播放</a>
 					</div>
 				</section>
 				
@@ -204,7 +204,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="iOS_布局中的那些坑">iOS 布局中的那些坑</h1><h2 id="automaticallyAdjustsScrollViewInsets_属性">automaticallyAdjustsScrollViewInsets 属性</h2><h3 id="导航条影响_scrollView_及其子类的偏移量">导航条影响 scrollView 及其子类的偏移量</h3><p>在 iOS 开发中，我们有时候会遇到系统默认生成的一些布局，一些默认的顶部偏移量等。 比如：如果 navigationBar下面直接是一个scrollView或者其子类。那么scrollView 及其子类 内部布局会从（0，64）开始，自动向下偏移64个点。这当然是极好的，不需要我们手动调整。 64pt = 状态栏高度20pt + 导航栏高度44pt。</p>
+        <h2 id="automaticallyAdjustsScrollViewInsets_属性">automaticallyAdjustsScrollViewInsets 属性</h2><h3 id="导航条影响_scrollView_及其子类的偏移量">导航条影响 scrollView 及其子类的偏移量</h3><p>在 iOS 开发中，我们有时候会遇到系统默认生成的一些布局，一些默认的顶部偏移量等。 比如：如果 navigationBar下面直接是一个scrollView或者其子类。那么scrollView 及其子类 内部布局会从（0，64）开始，自动向下偏移64个点。这当然是极好的，不需要我们手动调整。 64pt = 状态栏高度20pt + 导航栏高度44pt。</p>
 <p>如图所示：一个tableViewController被设置为 navigatiViewController 的根视图。</p>
 <div align="center"><br><img src="/images/01_tableView.jpg" width="200" align="center"><br></div>
 
@@ -219,7 +219,7 @@
 <p>该属性默认为 YES，只需要设置为 NO，scrollView的偏移量为（0，0）。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.automaticallyAdjustsScrollViewInsets = NO;</span><br></pre></td></tr></table></figure>
 <p>如图所示：</p>
-<div align="center"><br><img src="/images/03.png" width="200" align="center"><br></div>
+<div align="center"><br><img src="/images/03.jpg" width="200" align="center"><br></div>
 
 <h2 id="edgesForExtendedLayout_属性">edgesForExtendedLayout 属性</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@property(nonatomic, assign) UIRectEdge edgesForExtendedLayout</span><br></pre></td></tr></table></figure>
 <p>在 iOS 7 中，苹果在视图控制器中引入了一个新的属性，edgesForExtendedLayout。 </p>
@@ -240,6 +240,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/09/21/基于-AVPlayer-自定义播放器/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          基于 AVPlayer 自定义播放器
+        
+      </div>
+    </a>
   
   
     <a href="/2016/03/26/记心里的一些想法/" id="article-nav-older" class="article-nav-link-wrap">

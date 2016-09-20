@@ -103,7 +103,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/3DTouch/" style="font-size: 10px;">3DTouch</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/iOS布局/" style="font-size: 10px;">iOS布局</a> <a href="/tags/动漫/" style="font-size: 10px;">动漫</a> <a href="/tags/己亥杂言/" style="font-size: 10px;">己亥杂言</a>
+						<a href="/tags/3DTouch/" style="font-size: 10px;">3DTouch</a> <a href="/tags/AVFoundation/" style="font-size: 10px;">AVFoundation</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/iOS布局/" style="font-size: 10px;">iOS布局</a> <a href="/tags/动漫/" style="font-size: 10px;">动漫</a> <a href="/tags/己亥杂言/" style="font-size: 10px;">己亥杂言</a> <a href="/tags/视频播放/" style="font-size: 10px;">视频播放</a>
 					</div>
 				</section>
 				
@@ -163,6 +163,73 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-基于-AVPlayer-自定义播放器" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/21/基于-AVPlayer-自定义播放器/" class="article-date">
+  	<time datetime="2016-09-20T20:48:14.000Z" itemprop="datePublished">2016-09-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/21/基于-AVPlayer-自定义播放器/">基于 AVPlayer 自定义播放器</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如果我只是简单的播放一个视频，而不需要考虑播放器的界面。iOS9.0 之前使用 <code>MPMoviePlayerController</code>, 或者内部自带一个 view 的 <code>MPMoviePlayerViewController</code>.  iOS9.0 之后，可以使用 <code>AVPictureInPictureController</code>, <code>AVPlayerViewController</code>, 或者 <code>WKWebView</code>。 </p>
+<p>以上系统提供的播放器由于高度的封装性， 使得自定义播放器变的很难。 所以，如果我需要自定义播放器样式的时候，可以使用 <code>AVPlayer</code>。 AVPlayer 存在于 AVFoundtion 中，更接近于底层，也更加灵活。</p>
+<p><img src="http://ww3.sinaimg.cn/large/650c943bgw1f7vm4unkqij20g00ag74v" alt=""></p>
+<h3 id="Representing_and_Using_Media_with_AVFoundation">Representing and Using Media with AVFoundation</h3><p>AVFoundtion 框架中主要使用 <code>AVAsset</code> 类来展示媒体信息，比如： title， duration， size 等等。  </p>
+<ul>
+<li>AVAsset : 存储媒体信息的一个抽象类，不能直接使用。  </li>
+<li>AVURLAsset : AVAsset 的一个子类，使用 URL 进行实例化，实例化对象包换 URL 对应视频资源的所有信息。  </li>
+<li>AVPlayerItem :  有一个属性为 asset。起到观察和管理视频信息的作用。 比如，asset, tracks ， status， duration ，loadedTimeRange 等。 </li>
+</ul>
+<p>我的理解是， AVPlayItem 相当于 Model 层，包含 Media 的信息和播放状态，并提供这些数据给视频观察者 比如：属性 <code>asset</code> ，URL视频的信息. <code>loadedTimeRanges</code> ，已缓冲进度。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AVFoundation/">AVFoundation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/视频播放/">视频播放</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/09/21/基于-AVPlayer-自定义播放器/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="ios-iOS-布局中的那些坑" class="article article-type-ios" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -189,7 +256,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="iOS_布局中的那些坑">iOS 布局中的那些坑</h1><h2 id="automaticallyAdjustsScrollViewInsets_属性">automaticallyAdjustsScrollViewInsets 属性</h2><h3 id="导航条影响_scrollView_及其子类的偏移量">导航条影响 scrollView 及其子类的偏移量</h3><p>在 iOS 开发中，我们有时候会遇到系统默认生成的一些布局，一些默认的顶部偏移量等。 比如：如果 navigationBar下面直接是一个scrollView或者其子类。那么scrollView 及其子类 内部布局会从（0，64）开始，自动向下偏移64个点。这当然是极好的，不需要我们手动调整。 64pt = 状态栏高度20pt + 导航栏高度44pt。</p>
+        <h2 id="automaticallyAdjustsScrollViewInsets_属性">automaticallyAdjustsScrollViewInsets 属性</h2><h3 id="导航条影响_scrollView_及其子类的偏移量">导航条影响 scrollView 及其子类的偏移量</h3><p>在 iOS 开发中，我们有时候会遇到系统默认生成的一些布局，一些默认的顶部偏移量等。 比如：如果 navigationBar下面直接是一个scrollView或者其子类。那么scrollView 及其子类 内部布局会从（0，64）开始，自动向下偏移64个点。这当然是极好的，不需要我们手动调整。 64pt = 状态栏高度20pt + 导航栏高度44pt。</p>
 <p>如图所示：一个tableViewController被设置为 navigatiViewController 的根视图。</p>
 <div align="center"><br><img src="/images/01_tableView.jpg" width="200" align="center"><br></div>
 
@@ -204,7 +271,7 @@
 <p>该属性默认为 YES，只需要设置为 NO，scrollView的偏移量为（0，0）。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.automaticallyAdjustsScrollViewInsets = NO;</span><br></pre></td></tr></table></figure>
 <p>如图所示：</p>
-<div align="center"><br><img src="/images/03.png" width="200" align="center"><br></div>
+<div align="center"><br><img src="/images/03.jpg" width="200" align="center"><br></div>
 
 <h2 id="edgesForExtendedLayout_属性">edgesForExtendedLayout 属性</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@property(nonatomic, assign) UIRectEdge edgesForExtendedLayout</span><br></pre></td></tr></table></figure>
 <p>在 iOS 7 中，苹果在视图控制器中引入了一个新的属性，edgesForExtendedLayout。 </p>
@@ -271,17 +338,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="记心里的一些话">记心里的一些话</h2><p>以前的我总是在踌躇，不知道自己该怎么走今后的方向。 是出去干开发， 还是留在这里继续教学。</p>
-<p>我发现自己已经不知道该怎么面对学生了，如何面对一些，连键盘都不熟悉的学生。这两天，班里有一个完全没有任何基础的王同学，和一个平同学，当一天有同学问我，<code>&quot;&quot;</code> 引号应该怎么用键盘打出来的时候。 我就不知道到底应该怎么把后面的一些基本的编程思想和算法告诉给他们。</p>
+        <p>以前的我总是在踌躇，不知道自己该怎么走今后的方向。 是出去干开发， 还是留在这里继续教学。</p>
+<p>我发现自己已经不知道该怎么面对学生了，如何面对一些，连键盘都不熟悉的学生。这两天，班里有一个完全没有任何基础的A同学，和一个B同学，当一天有同学问我，<code>&quot;&quot;</code> 引号应该怎么用键盘打出来的时候。 我就不知道到底应该怎么把后面的一些基本的编程思想和算法告诉给他们。</p>
 <p>关于编程思想 和 算法这些东西，其实我自己也不知道多少，知道的仅是可以勉强教给一些小朋友而已。可是，我所说的这些小朋友，不包含连键盘也不知道怎么使用的这部分小朋友。</p>
-<p>之前任何基础都没有的同学，就像王同学 和 平同学，同时还有其他同学。在入学面谈,我问他们,你是为什么选择编程这条路的时候,王同学 和 平同学的答案是:”我之前有朋友告诉我，学这个现在工资挺高的”。 同样有个没有基础的学生说:”我觉得学会这个可以掌握一门技能，通过这门技能我或许可以走的更远”。</p>
+<p>之前任何基础都没有的同学，就像A同学 和 B同学，同时还有其他同学。在入学面谈,我问他们,你是为什么选择编程这条路的时候,A 同学 和 B 同学的答案是:”我之前有朋友告诉我，学这个现在工资挺高的”。 同样有个没有基础的学生说:”我觉得学会这个可以掌握一门技能，通过这门技能我或许可以走的更远”。</p>
 <p>这个给我希望可以走的更远答案的这个学生，坐在第一排。他令我回忆起了自己还是一个刚入学的只会打游戏的小愤青，在大学教室里回答政治老师的“你觉得什么是大学，你在大学的目标是什么？” 问题时，睥睨着小眼，说出——“我觉得大学是自由和坚持，当然还有性”，我觉得自己永远也忘不了，自己后面的答案:”我想在大学四年间努力学习，并且成为一个合格的计算机人才“。 </p>
 <p>当前，大学里什么也没有教会我，没有教会我性，我也没有成为一个合格的计算机人才。虽然，在大学四年四处发力，完全没有停下渴求技术的脚步。可是最终还是没有任何结果，在别人看来或许我就像一条将要溺死的狗，虽然已经爬上了岸，但还在恐慌得朝着空气滑动四肢一样。</p>
-<p>经历过无助的我，更是知道走编程这条路的可怕。借用，一下，今天一位前辈离职文中最后的一段话：“互联网就是变化的如此快，有多么高的巅峰就有多么深的低谷。拥抱变化，这个披着正向价值观的口号，它有个不愿意被人提起的本质：‘若肉强食’，只有足够强大、足够勤奋或足够聪明才能在这里快的的工作下去吧。”</p>
+<p>经历过无助的我，更是知道走编程这条路的可怕。借用，一下，一位前辈文中最后的一段话：“互联网就是变化的如此快，有多么高的巅峰就有多么深的低谷。拥抱变化，这个披着正向价值观的口号，它有个不愿意被人提起的本质：‘若肉强食’，只有足够强大、足够勤奋或足够聪明才能在这里快的的工作下去吧。”</p>
 <p>互联网就是这样，变化太快。前面的人还没有刚冲进去，后一波浪潮就过来了。可总是有那么一波人，在这个快要被淹死的时代能抱着石头潜下去，这是不会游泳的人用的一招，潜下去很深，静静得望着上面，默默成长，默默等待。等上面不那么喧嚣了，再抱着石头走上来。 这些人，总是可以在技术道路上走得很远很远，对于他们来说，没有不努力，没有不奋斗，因为他们知道羞耻，当然也或许是自卑。</p>
-<p>可是对于这部分认真、努力到让我落泪的人，我唯有充满敬仰。我唯恐喝彩了一声，就是对他们的亵渎。唯有努力眨干眼睛里的泪水，再带着笑容看着他们。</p>
-<p>所以，对于一些连键盘都不熟悉，就觉得编程这条路好走的同学。我此时站在他们的面前，他问着我 <code>&quot;&quot;</code> 引号怎么打，问我“老师我这个鼠标怎么动不了了”。 我突然想失声痛哭，我觉得自己对不起昨天那个说出想要成为“合格的专业人才”的影子；也对不起那个给我“想掌握一门技术，希望自己可以走得更远……”的第一组学生。 我觉得自己好像亵渎了那些努力奋斗的人，侮辱了那些即便很苦还是在加班到很晚敲代码的人，玷污了那些做了很多前期准备，摩拳擦掌跃跃欲试进入这个区域的清湛面孔。</p>
-<p>虽然小子不才，是个编程渣滓，可是仍有这么一块领土，不允许别人践踏——请不要问我 <code>&quot;</code> 引号怎么打。 谢谢。</p>
+<p>对于这部分认真、努力到让我落泪的人，我唯有充满敬仰。我唯恐喝彩了一声，就是对他们的亵渎。唯有努力眨干眼睛里的泪水，再带着笑容看着。</p>
+<p>所以，对于一些连键盘都不熟悉，就觉得编程这条路好走的同学。我此时站在他们的面前，他问着我 <code>&quot;&quot;</code> 引号怎么打，问我“老师我这个鼠标怎么动不了了”。 我突然想失声痛哭，我觉得自己对不起昨天那个说出想要成为“合格的专业人才”的影子；也对不起那个给我“想掌握一门技术，希望自己可以走得更远……”的学生。 我觉得自己好像亵渎了那些努力奋斗的人，侮辱了那些即便很苦还是在加班到很晚敲代码的人，玷污了那些做了很多前期准备，摩拳擦掌跃跃欲试进入这个区域的清湛面孔。</p>
+<p>ps：写完这个篇文章的一个月后，从公司辞职。 以后的路，还是要好走下去的。 我埋怨以前，那是忧郁者做的事情。后面的路很宽广，人人都是动物，不是植物。 今天的风儿很喧嚣呢。 </p>
 
       
     </div>
@@ -336,7 +403,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="3DTouch（一）静态按钮快速掌握">3DTouch（一）静态按钮快速掌握</h1><p><img src="/images/bilibili.jpg" alt=""></p>
+        <p><img src="/images/bilibili.jpg" alt=""></p>
 <p>在iOS 9中，新iPhone将第三维度添加到了用户界面。</p>
 <p>用户现在可以用力摁下主屏按钮来快速调出应用提供的功能菜单。<br>在应用中，用户现在可以用力摁下视图以查看更多内容的预览并且快速访问一些功能。</p>
 <p>需要明确的几个词汇  </p>
@@ -404,7 +471,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="MAC_上_github_+_hexo_搭建博客教程">MAC 上 github + hexo 搭建博客教程</h1><p>一直想做个自己博客，于是近几日买了域名，在阿里云上面申请了服务器。<br>谁知最后在网站备案那一步卡住。于是备案的事情慢慢做罢。之前有朋友推荐我使用GitHubPages，githubpages提供 300M 的免费空间，做博客够用了。下面采用 gitHub + hexo 搭建各人博客。</p>
+        <h1 id="MAC_上_github_+_hexo_搭建博客教程">MAC 上 github + hexo 搭建博客教程</h1><p>一直想做个自己博客，于是近几日买了域名，在阿里云上面申请了服务器。<br>下面采用 gitHub + hexo 搭建各人博客。</p>
 <h2 id="前期准备">前期准备</h2><p><em>硬件</em><br><strong>mac 电脑</strong></p>
 <p><em>软件</em>    </p>
 <ol>

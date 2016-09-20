@@ -5,32 +5,50 @@
   
   <title>Hexo教程(一)——搭建各人博客 | Shumin Wu の 魔法协会</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MAC 上 github + hexo 搭建博客教程一直想做个自己博客，于是近几日买了域名，在阿里云上面申请了服务器。谁知最后在网站备案那一步卡住。于是备案的事情慢慢做罢。之前有朋友推荐我使用GitHubPages，githubpages提供 300M 的免费空间，做博客够用了。下面采用 gitHub + hexo 搭建各人博客。
+  <meta name="description" content="MAC 上 github + hexo 搭建博客教程一直想做个自己博客，于是近几日买了域名，在阿里云上面申请了服务器。下面采用 gitHub + hexo 搭建各人博客。
 前期准备硬件mac 电脑
 软件    
 
-github账号">
+github账号     
+homebrew  
+node.js    
+npm  
+hexo    
+
+注意：（node.js 集成带有npm，因此只要下载 node.js 就可以了）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo教程(一)——搭建各人博客">
 <meta property="og:url" content="http://littledogboy.github.io/2015/10/08/Hexo教程(一)——搭建各人博客/index.html">
 <meta property="og:site_name" content="Shumin Wu の 魔法协会">
-<meta property="og:description" content="MAC 上 github + hexo 搭建博客教程一直想做个自己博客，于是近几日买了域名，在阿里云上面申请了服务器。谁知最后在网站备案那一步卡住。于是备案的事情慢慢做罢。之前有朋友推荐我使用GitHubPages，githubpages提供 300M 的免费空间，做博客够用了。下面采用 gitHub + hexo 搭建各人博客。
+<meta property="og:description" content="MAC 上 github + hexo 搭建博客教程一直想做个自己博客，于是近几日买了域名，在阿里云上面申请了服务器。下面采用 gitHub + hexo 搭建各人博客。
 前期准备硬件mac 电脑
 软件    
 
-github账号">
+github账号     
+homebrew  
+node.js    
+npm  
+hexo    
+
+注意：（node.js 集成带有npm，因此只要下载 node.js 就可以了）">
 <meta property="og:image" content="http://littledogboy.github.io/images/00_brew安装node.png">
 <meta property="og:image" content="http://littledogboy.github.io/images/01_node.png">
 <meta property="og:image" content="http://littledogboy.github.io/images/03_解析.png">
 <meta property="og:image" content="http://littledogboy.github.io/images/04_域名解析.png">
-<meta property="og:updated_time" content="2016-04-08T08:43:23.000Z">
+<meta property="og:updated_time" content="2016-09-20T20:40:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo教程(一)——搭建各人博客">
-<meta name="twitter:description" content="MAC 上 github + hexo 搭建博客教程一直想做个自己博客，于是近几日买了域名，在阿里云上面申请了服务器。谁知最后在网站备案那一步卡住。于是备案的事情慢慢做罢。之前有朋友推荐我使用GitHubPages，githubpages提供 300M 的免费空间，做博客够用了。下面采用 gitHub + hexo 搭建各人博客。
+<meta name="twitter:description" content="MAC 上 github + hexo 搭建博客教程一直想做个自己博客，于是近几日买了域名，在阿里云上面申请了服务器。下面采用 gitHub + hexo 搭建各人博客。
 前期准备硬件mac 电脑
 软件    
 
-github账号">
+github账号     
+homebrew  
+node.js    
+npm  
+hexo    
+
+注意：（node.js 集成带有npm，因此只要下载 node.js 就可以了）">
   
     <link rel="alternative" href="/atom.xml" title="Shumin Wu の 魔法协会" type="application/atom+xml">
   
@@ -120,7 +138,7 @@ github账号">
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/3DTouch/" style="font-size: 10px;">3DTouch</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/iOS布局/" style="font-size: 10px;">iOS布局</a> <a href="/tags/动漫/" style="font-size: 10px;">动漫</a> <a href="/tags/己亥杂言/" style="font-size: 10px;">己亥杂言</a>
+						<a href="/tags/3DTouch/" style="font-size: 10px;">3DTouch</a> <a href="/tags/AVFoundation/" style="font-size: 10px;">AVFoundation</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/iOS布局/" style="font-size: 10px;">iOS布局</a> <a href="/tags/动漫/" style="font-size: 10px;">动漫</a> <a href="/tags/己亥杂言/" style="font-size: 10px;">己亥杂言</a> <a href="/tags/视频播放/" style="font-size: 10px;">视频播放</a>
 					</div>
 				</section>
 				
@@ -215,7 +233,7 @@ github账号">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="MAC_上_github_+_hexo_搭建博客教程">MAC 上 github + hexo 搭建博客教程</h1><p>一直想做个自己博客，于是近几日买了域名，在阿里云上面申请了服务器。<br>谁知最后在网站备案那一步卡住。于是备案的事情慢慢做罢。之前有朋友推荐我使用GitHubPages，githubpages提供 300M 的免费空间，做博客够用了。下面采用 gitHub + hexo 搭建各人博客。</p>
+        <h1 id="MAC_上_github_+_hexo_搭建博客教程">MAC 上 github + hexo 搭建博客教程</h1><p>一直想做个自己博客，于是近几日买了域名，在阿里云上面申请了服务器。<br>下面采用 gitHub + hexo 搭建各人博客。</p>
 <h2 id="前期准备">前期准备</h2><p><em>硬件</em><br><strong>mac 电脑</strong></p>
 <p><em>软件</em>    </p>
 <ol>
