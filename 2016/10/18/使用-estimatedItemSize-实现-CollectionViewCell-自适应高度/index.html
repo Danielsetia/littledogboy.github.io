@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用 estimatedItemSize 实现 CollectionViewCell 自适应高度 | Shumin Wu の 魔法协会</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="必须 iOS8.0 以上版本今年苹果推出了 iOS10 ，往下数三个版本，也就说我们不必支持iOS7.0 了。这真是极好的消息。吓得我赶紧日一下狗表示自己的激动。这意味着我们不必再用纯代码，自己去计算 cell 的高度。可以使用 iOS8.0 的 Self-Sizing Cells">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 estimatedItemSize 实现 CollectionViewCell 自适应高度">
+<meta property="og:url" content="http://littledogboy.github.io/2016/10/18/使用-estimatedItemSize-实现-CollectionViewCell-自适应高度/index.html">
+<meta property="og:site_name" content="Shumin Wu の 魔法协会">
+<meta property="og:description" content="必须 iOS8.0 以上版本今年苹果推出了 iOS10 ，往下数三个版本，也就说我们不必支持iOS7.0 了。这真是极好的消息。吓得我赶紧日一下狗表示自己的激动。这意味着我们不必再用纯代码，自己去计算 cell 的高度。可以使用 iOS8.0 的 Self-Sizing Cells">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/650c943bgw1f8whk42xjyj2074065aam">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/650c943bgw1f8whywxbn1j20bb068wei">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/650c943bgw1f8wjkk94u3g20ac0ifkjp.gif">
+<meta property="og:updated_time" content="2016-10-18T09:28:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 estimatedItemSize 实现 CollectionViewCell 自适应高度">
+<meta name="twitter:description" content="必须 iOS8.0 以上版本今年苹果推出了 iOS10 ，往下数三个版本，也就说我们不必支持iOS7.0 了。这真是极好的消息。吓得我赶紧日一下狗表示自己的激动。这意味着我们不必再用纯代码，自己去计算 cell 的高度。可以使用 iOS8.0 的 Self-Sizing Cells">
+  
+    <link rel="alternative" href="/atom.xml" title="Shumin Wu の 魔法协会" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shumin Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/动漫">动漫</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/littledogboy" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/p/1005051695323195/home?from=page_100505&mod=TAB#place" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/3DTouch/" style="font-size: 10px;">3DTouch</a> <a href="/tags/AVFoundation/" style="font-size: 10px;">AVFoundation</a> <a href="/tags/AutoLayout/" style="font-size: 10px;">AutoLayout</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/iOS布局/" style="font-size: 10px;">iOS布局</a> <a href="/tags/动漫/" style="font-size: 10px;">动漫</a> <a href="/tags/己亥杂言/" style="font-size: 10px;">己亥杂言</a> <a href="/tags/自适应高度/" style="font-size: 10px;">自适应高度</a> <a href="/tags/视频播放/" style="font-size: 10px;">视频播放</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">iOS开发者 、 动漫爱好者 、 mader</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shumin Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shumin Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/动漫">动漫</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/littledogboy" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/p/1005051695323195/home?from=page_100505&mod=TAB#place" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-使用-estimatedItemSize-实现-CollectionViewCell-自适应高度" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/18/使用-estimatedItemSize-实现-CollectionViewCell-自适应高度/" class="article-date">
+  	<time datetime="2016-10-18T09:24:53.000Z" itemprop="datePublished">2016-10-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用 estimatedItemSize 实现 CollectionViewCell 自适应高度
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AutoLayout/">AutoLayout</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自适应高度/">自适应高度</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="必须_iOS8-0_以上版本">必须 iOS8.0 以上版本</h2><p>今年苹果推出了 iOS10 ，往下数三个版本，也就说我们不必支持iOS7.0 了。这真是极好的消息。吓得我赶紧日一下狗表示自己的激动。这意味着我们不必再用纯代码，自己去计算 cell 的高度。可以使用 iOS8.0 的 Self-Sizing Cells<br><a id="more"></a></p>
+<h2 id="1-_设置_estimatdItemSize">1. 设置 estimatdItemSize</h2><p><strong>设置 layout 的 estimatdItemSize （预估高度</strong></p>
+<p>layout.estimatedItemSize = CGSizeMake(itemWidth, itemHeight);</p>
+<p>默认值为 CGSizeZero ,给一个非0值开启高度估算。</p>
+<h2 id="2-_给_cell_添加约束">2. 给 cell 添加约束</h2><p>如果想要 cell 高度自适应，一定要给清楚 cell 宽度的约束；如果想要宽度自适应，给定高度约束。</p>
+<p><strong>注意：</strong> 不要在 xib 或者 Storyboard 给控件添加约束，因为这样添加上 top 和 left 会直接添加到 cell 上，而不是cell.contentView 上。(如果你是纯代码选手，请忽视这一点。)</p>
+<p>同时我们还需要把 xib File’s owner 的 Use Auto Layout 给禁用掉。</p>
+<p><img src="http://ww3.sinaimg.cn/large/650c943bgw1f8whk42xjyj2074065aam" alt=""></p>
+<p>iOS8.0 之后苹果加强了 autolayout 的推广使用。在 WWDC2015 大会中 特别介绍了这一点。<br>视频地址：<br><a href="https://developer.apple.com/videos/play/wwdc2015/218/" target="_blank" rel="external">Mysteriis of Auto Layout, Part 1</a><br><a href="https://developer.apple.com/videos/play/wwdc2015/219/" target="_blank" rel="external">Mysteriis of Auto Layout, Part 2</a></p>
+<p>虽然苹果的autoLayout语法变得简洁了许多，但个人更喜欢用 Masonry 来写约束。</p>
+<p>下面将用 Masonry 来写 图中的约束。最下面的灰色字体 Label 为动态高度。</p>
+<p><img src="http://ww3.sinaimg.cn/large/650c943bgw1f8whywxbn1j20bb068wei" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#27880;&#24847;&#65306; &#19968;&#23450;&#35201; &#31105;&#29992; file&#39;s owner &#30340; autoLayout&#10;   WS(ws);&#10;   [self.contentView makeConstraints:^(MASConstraintMaker *make) &#123;&#10;       make.left.top.equalTo(@(0));&#10;       make.width.equalTo(@(screenWidth - 12 * 2)); // &#36825;&#37324;&#24517;&#39035;&#32473;&#23450;width&#30340;&#20540;&#10;       make.bottom.equalTo(ws.descLabel.bottom).offset(10); // content.bottom = ws.desLabel.bottom + 10&#10;   &#125;];&#10;   &#10;   [self.coverImageView makeConstraints:^(MASConstraintMaker *make) &#123;&#10;       make.left.top.width.equalTo(ws.contentView);&#10;       make.height.equalTo(ws.coverImageView.width).multipliedBy(110/351.0);&#10;   &#125;];&#10;   &#10;   [self.titleLabel makeConstraints:^(MASConstraintMaker *make) &#123;&#10;       make.left.equalTo(ws.coverImageView).offset(10);&#10;       make.top.equalTo(ws.coverImageView.bottom).offset(10);&#10;       make.width.equalTo(ws.coverImageView);&#10;       make.height.equalTo(@(17));&#10;   &#125;];&#10;   &#10;   [self.descLabel makeConstraints:^(MASConstraintMaker *make) &#123;&#10;       make.left.equalTo(ws.titleLabel);&#10;       make.top.equalTo(ws.titleLabel.bottom).offset(10);&#10;       make.width.equalTo(ws.titleLabel);&#10;       make.height.greaterThanOrEqualTo(@(14)).priority(1000); &#10;   &#125;];</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> （前提高度自适应）<br>1.必须给定 contentView 的宽度   </p>
+<ol>
+<li>top 和 bottom 约束一定要设定，并且注意 contentView.bottom = descLabel.bottom 是给 contentView 添加约束。</li>
+</ol>
+<h2 id="3-_重写_preferredLayoutAttributesFittingAttributes_方法">3. 重写 preferredLayoutAttributesFittingAttributes 方法</h2><p>在该方法内部，获取 contentView 自适应的 size。更改 attributes.frame 后返回。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#37325;&#20889;&#20248;&#20808;&#32422;&#26463;&#23646;&#24615;&#10;- (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes &#123;&#10;    [self setNeedsLayout];&#10;    [self layoutIfNeeded];&#10;    CGSize size = [self.contentView systemLayoutSizeFittingSize:layoutAttributes.size]; // &#33719;&#21462;&#33258;&#36866;&#24212;size&#10;    CGRect newFrame = layoutAttributes.frame;&#10;    newFrame.size.height = size.height;&#10;    newFrame.size.width = screenWidth - 12 * 2; // &#19981;&#21516;&#23631;&#24149;&#36866;&#37197;&#10;    layoutAttributes.frame = newFrame;&#10;    return layoutAttributes;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>效果如图：录屏用的 30fps 实际上是很流畅的。<br><img src="http://ww4.sinaimg.cn/mw690/650c943bgw1f8wjkk94u3g20ac0ifkjp.gif" alt=""></p>
+<p><a href="https://github.com/littledogboy/EstimatedItemSize" target="_blank" rel="external">更简洁的Demo在这里</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/09/21/基于-AVPlayer-自定义播放器/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">基于 AVPlayer 自定义播放器</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="使用-estimatedItemSize-实现-CollectionViewCell-自适应高度" data-title="使用 estimatedItemSize 实现 CollectionViewCell 自适应高度" data-url="http://littledogboy.github.io/2016/10/18/使用-estimatedItemSize-实现-CollectionViewCell-自适应高度/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"littledogboy"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    	 &copy; 2016 Shumin Wu
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+        <div class="footer-center">
+          <a href="http://www.miibeian.gov.cn" target="_blank">豫ICP备16002850号</a>
+        </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
