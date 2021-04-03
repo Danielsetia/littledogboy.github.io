@@ -6,23 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>基于 AVPlayer 自定义播放器 | ShuminWu の 魔法协会</title>
+  <title>iOS 布局中的那些坑 | ShuminWu の 魔法协会</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="如果我只是简单的播放一个视频，而不需要考虑播放器的界面。iOS9.0 之前使用 MPMoviePlayerController, 或者内部自带一个 view 的 MPMoviePlayerViewController.  iOS9.0 之后，可以使用 AVPictureInPictureController, AVPlayerViewController, 或者 WKWebView。  以上系统提">
+  <meta name="description" content="导航条影响 scrollView 及其子类的偏移量在 iOS 开发中，我们有时候会遇到系统默认生成的一些布局 比如：如果 navigationBar下面直接是一个scrollView或者其子类。那么scrollView 及其子类 内部布局会从（0，64）开始，自动向下偏移64个点。 64pt &#x3D; 状态栏高度20pt + 导航栏高度44pt。 如图所示：一个 tableViewController">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于 AVPlayer 自定义播放器">
-<meta property="og:url" content="http://yoursite.com/2016/09/21/%E5%9F%BA%E4%BA%8E-AVPlayer-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%92%AD%E6%94%BE%E5%99%A8/index.html">
+<meta property="og:title" content="iOS 布局中的那些坑">
+<meta property="og:url" content="http://yoursite.com/2016/05/20/iOS-%E5%B8%83%E5%B1%80%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/index.html">
 <meta property="og:site_name" content="ShuminWu の 魔法协会">
-<meta property="og:description" content="如果我只是简单的播放一个视频，而不需要考虑播放器的界面。iOS9.0 之前使用 MPMoviePlayerController, 或者内部自带一个 view 的 MPMoviePlayerViewController.  iOS9.0 之后，可以使用 AVPictureInPictureController, AVPlayerViewController, 或者 WKWebView。  以上系统提">
+<meta property="og:description" content="导航条影响 scrollView 及其子类的偏移量在 iOS 开发中，我们有时候会遇到系统默认生成的一些布局 比如：如果 navigationBar下面直接是一个scrollView或者其子类。那么scrollView 及其子类 内部布局会从（0，64）开始，自动向下偏移64个点。 64pt &#x3D; 状态栏高度20pt + 导航栏高度44pt。 如图所示：一个 tableViewController">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/650c943bgw1f7vm4unkqij20g00ag74v">
-<meta property="og:image" content="http://yoursite.com/2016/09/21/%E5%9F%BA%E4%BA%8E-AVPlayer-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%92%AD%E6%94%BE%E5%99%A8/AVPlayer%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8.gif">
-<meta property="article:published_time" content="2016-09-21T10:48:48.000Z">
-<meta property="article:modified_time" content="2021-03-31T10:26:53.079Z">
+<meta property="og:image" content="http://yoursite.com/2016/05/20/iOS-%E5%B8%83%E5%B1%80%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/01_tableView.jpg">
+<meta property="og:image" content="http://yoursite.com/2016/05/20/iOS-%E5%B8%83%E5%B1%80%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/02_%E5%BC%82%E5%B8%B8%E5%81%8F%E7%A7%BB20pt.jpg">
+<meta property="og:image" content="http://yoursite.com/2016/05/20/iOS-%E5%B8%83%E5%B1%80%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/03_%E6%AD%A3%E5%B8%B8%E5%B8%83%E5%B1%80.jpg">
+<meta property="og:image" content="http://yoursite.com/2016/05/20/iOS-%E5%B8%83%E5%B1%80%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/04_%E6%9C%AA%E8%AE%BE%E7%BD%AE%E8%BE%B9%E7%BC%98%E5%B8%83%E5%B1%80.gif">
+<meta property="og:image" content="http://yoursite.com/2016/05/20/iOS-%E5%B8%83%E5%B1%80%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/05_%E5%B7%B2%E8%AE%BE%E7%BD%AE%E8%BE%B9%E7%BC%98%E5%B8%83%E5%B1%80.gif">
+<meta property="article:published_time" content="2016-05-20T14:35:17.000Z">
+<meta property="article:modified_time" content="2021-04-02T18:05:23.661Z">
 <meta property="article:author" content="ShuminWu">
-<meta property="article:tag" content="AVPlayer">
+<meta property="article:tag" content="iOS 布局">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/650c943bgw1f7vm4unkqij20g00ag74v">
+<meta name="twitter:image" content="http://yoursite.com/2016/05/20/iOS-%E5%B8%83%E5%B1%80%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/01_tableView.jpg">
   
   
     <link rel="icon" href="/favicon.png">
@@ -142,134 +145,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-基于-AVPlayer-自定义播放器" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-iOS-布局中的那些坑" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      基于 AVPlayer 自定义播放器
+      iOS 布局中的那些坑
     </h1>
   
 
         
-        <a href="/2016/09/21/%E5%9F%BA%E4%BA%8E-AVPlayer-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%92%AD%E6%94%BE%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2016-09-21T10:48:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-21</time>
+        <a href="/2016/05/20/iOS-%E5%B8%83%E5%B1%80%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/" class="archive-article-date">
+  	<time datetime="2016-05-20T14:35:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>如果我只是简单的播放一个视频，而不需要考虑播放器的界面。iOS9.0 之前使用 <code>MPMoviePlayerController</code>, 或者内部自带一个 view 的 <code>MPMoviePlayerViewController</code>.  iOS9.0 之后，可以使用 <code>AVPictureInPictureController</code>, <code>AVPlayerViewController</code>, 或者 <code>WKWebView</code>。 </p>
-<p>以上系统提供的播放器由于高度的封装性， 使得自定义播放器变的很难。 所以，如果我需要自定义播放器样式的时候，可以使用 <code>AVPlayer</code>。 AVPlayer 存在于 AVFoundtion 中，更接近于底层，也更加灵活。</p>
-<img src="http://ww3.sinaimg.cn/large/650c943bgw1f7vm4unkqij20g00ag74v" width="100%" height="100%" title="" alt=""/>
+        <h2 id="导航条影响-scrollView-及其子类的偏移量"><a href="#导航条影响-scrollView-及其子类的偏移量" class="headerlink" title="导航条影响 scrollView 及其子类的偏移量"></a>导航条影响 scrollView 及其子类的偏移量</h2><p>在 iOS 开发中，我们有时候会遇到系统默认生成的一些布局 比如：如果 navigationBar下面直接是一个scrollView或者其子类。那么scrollView 及其子类 内部布局会从（0，64）开始，自动向下偏移64个点。 64pt = 状态栏高度20pt + 导航栏高度44pt。</p>
+<p>如图所示：一个 tableViewController 被设置为 navigatiViewController 的根视图。</p>
+<!-- ![](iOS-布局中的那些坑/01_tableView.jpg)  -->
+<p><img src="/2016/05/20/iOS-%E5%B8%83%E5%B1%80%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/01_tableView.jpg"></p>
+<span id="more"></span>
 
-<a id="more"></a>
+<p><strong>奇怪的是如果我们隐藏了导航条，状态栏仍然会影响 scrollView 的偏移量</strong></p>
+<p>把 NavigationBar 给隐藏掉，然后在 controller.view 上 添加一个自定义的 scrollView ，发现scrollView 这次向下偏移了 20pt，这20pt 是状态栏的高度。<br>如图所示： 隐藏了导航栏，添加了一个scrollView，scrollView 中的内容向下偏移了 20pt。</p>
+<!-- ![](iOS-布局中的那些坑/02_异常偏移20pt.jpg) -->
+<p><img src="/2016/05/20/iOS-%E5%B8%83%E5%B1%80%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/02_%E5%BC%82%E5%B8%B8%E5%81%8F%E7%A7%BB20pt.jpg"></p>
+<p>iOS7.0 之后，在 UIViewController 中有一个属性 <code>automaticallyAdjustsScrollViewInsets </code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@property(nonatomic,assign) BOOL automaticallyAdjustsScrollViewInsets NS_AVAILABLE_IOS(7_0); &#x2F;&#x2F; Defaults to YES</span><br></pre></td></tr></table></figure>
+<p>该属性默认为 YES，需要设置为 NO。</p>
+<!-- ![](iOS-布局中的那些坑/03_正常布局.jpg) -->
+<p><img src="/2016/05/20/iOS-%E5%B8%83%E5%B1%80%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/03_%E6%AD%A3%E5%B8%B8%E5%B8%83%E5%B1%80.jpg"></p>
+<h2 id="edgesForExtendedLayout-影响顶部布局"><a href="#edgesForExtendedLayout-影响顶部布局" class="headerlink" title="edgesForExtendedLayout 影响顶部布局"></a>edgesForExtendedLayout 影响顶部布局</h2><p>在 iOS 7 中，苹果在视图控制器中引入了一个新的属性，edgesForExtendedLayout。<br>该属性只影响容器视图控制器中的子视图控制器，比如，父控制器为UINavigationViewController的子控制器。 而对于window 的根视图控制器，并没有作用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@property(nonatomic, assign) UIRectEdge edgesForExtendedLayout</span><br></pre></td></tr></table></figure>
+<p>该属性决定了 controller.view 的布局方式，比如当容器控制器为 UINavigationViewController 时，子控制器view的布局 默认从navigationbar 的顶部开始。这会造成导航栏遮盖住下面的 view。</p>
+<p>如图所示：  </p>
+<!-- ![](iOS-布局中的那些坑/04_未设置边缘布局.gif) -->
+<p><img src="/2016/05/20/iOS-%E5%B8%83%E5%B1%80%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/04_%E6%9C%AA%E8%AE%BE%E7%BD%AE%E8%BE%B9%E7%BC%98%E5%B8%83%E5%B1%80.gif"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#ifdef __IPHONE_7_0</span><br><span class="line">- (UIRectEdge)edgesForExtendedLayout</span><br><span class="line">&#123;</span><br><span class="line">    return UIRectEdgeNone; &#x2F;&#x2F;  bottom 或者 None</span><br><span class="line">&#125;</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
 
-<h3 id="Representing-and-Using-Media-with-AVFoundation"><a href="#Representing-and-Using-Media-with-AVFoundation" class="headerlink" title="Representing and Using Media with AVFoundation"></a>Representing and Using Media with AVFoundation</h3><p>AVFoundtion 框架中主要使用 <code>AVAsset</code> 类来展示媒体信息，比如： title， duration， size 等等。  </p>
-<ul>
-<li>AVAsset : 存储媒体信息的一个抽象类，不能直接使用。  </li>
-<li>AVURLAsset : AVAsset 的一个子类，使用 URL 进行实例化，实例化对象包换 URL 对应视频资源的所有信息。  </li>
-<li>AVPlayerItem :  有一个属性为 asset。起到观察和管理视频信息的作用。 比如，asset, tracks ， status， duration ，loadedTimeRange 等。 </li>
-</ul>
-<p>我的理解是， AVPlayItem 相当于 Model 层，包含 Media 的信息和播放状态，并提供这些数据给视频观察者 比如：属性 <code>asset</code> ，URL视频的信息. <code>loadedTimeRanges</code> ，已缓冲进度。</p>
-<h2 id="AVPlayerItem-使用"><a href="#AVPlayerItem-使用" class="headerlink" title="AVPlayerItem 使用"></a>AVPlayerItem 使用</h2><h3 id="1-初始化"><a href="#1-初始化" class="headerlink" title="1. 初始化"></a>1. 初始化</h3><p><code>playerItemWithURL</code> 或者 <code>initWithURL:</code></p>
-<p>在使用 AVPlayer 播放视频时，提供视频信息的是 AVPlayerItem，一个 AVPlayerItem 对应着一个URL视频资源。</p>
-<p>初始化一个 AVPlayItem 对象后，其属性并不是马上就可以使用。我们必须确保 AVPlayerItem 已经被加载好了，可以播放了，才能使用。 毕竟凡是和网络扯上关系的都需要时间去加载。 那么，什么时候属性才能正常使用呢。 官方文档给出了解决方案：    </p>
-<ol>
-<li>直到 AVPlayerItem 的 <code>status</code> 属性为 <code>AVPlayerItemStatusReadyToPlay</code>.  </li>
-<li>使用 KVO 键值观察者，其属性。 </li>
-</ol>
-<p>因此我们在使用的时候，使用 URL 初始化 AVPlayerItem 后，还要给它添加观察者。 </p>
-<h3 id="2-添加观察者"><a href="#2-添加观察者" class="headerlink" title="2. 添加观察者"></a>2. 添加观察者</h3><p>AVPlayreItem 的属性需要当 status 为 ReadyToPlay 的时候才可以正常使用。 </p>
-<p><strong>观察status属性</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[_playerItem addObserver:self forKeyPath:@&quot;status&quot; options:(NSKeyValueObservingOptionNew) context:nil]; &#x2F;&#x2F; 观察status属性，</span><br></pre></td></tr></table></figure>
-
-<p><strong>观察loadedTimeRanges</strong></p>
-<p>如果想做缓冲进度条，显示当前视频的缓存进度，则需要观察 <code>loadedTimeRanges</code>.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[_playerItem addObserver:self forKeyPath:@&quot;loadedTimeRanges&quot; options:NSKeyValueObservingOptionNew context:nil]; &#x2F;&#x2F; 观察缓冲进度</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="AVPlayer-amp-AVPlayerLayer"><a href="#AVPlayer-amp-AVPlayerLayer" class="headerlink" title="AVPlayer &amp; AVPlayerLayer"></a>AVPlayer &amp; AVPlayerLayer</h2><p><strong>AVPlayer创建方式</strong><br>AVPlayer 有三种创建方式： </p>
-<p><code>init</code>,<code>initWithURL:</code>,<code>initWithPlayerItem:</code> （URL，Item遍历构造器方法）</p>
-<p>使用 AVPlayer 时需要注意，AVPlayer 本身并不能显示视频， 显示视频的是 AVPlayerLayer。 AVPlayerLayer 继承自 CALayer，添加到 view.layer 上就可以使用了。</p>
-<p><strong>AVPlayerLayer创建方式</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AVPlayerLayer *playerLayer &#x3D; [AVPlayerLayer playerLayerWithPlayer:player];</span><br><span class="line">[superlayer addSublayer:playerLayer];</span><br></pre></td></tr></table></figure>
-
-<p>AVPlayerLayer 显示视频，AVPlayerItem 提供视频信息， AVPlayer 管理和调控。 这是不是非常熟悉。 我觉得这里也体现了 MVC 的思想（虽然AVPlayer继承自NSObject）， 把响应层， 显示层， 信息层， 三层分离了。 明确了每层做的任务，使用起来就会更加得心应手。</p>
-<p>使用 AVPlayer 的核心，在于 AVPlayer 和 AVPlayerItem， AVPlayerLayer 添加到视图的layer 上后，就没有什么事儿了。 思考一下，整个播放视频的步骤。 </p>
-<ol>
-<li>首先，得到视频的URL  </li>
-<li>根据URL创建AVPlayerItem </li>
-<li>把AVPlayerItem 提供给 AVPlayer </li>
-<li>AVPlayerLayer 显示视频。 </li>
-<li>AVPlayer 控制视频， 播放， 暂停， 拖动 等等。</li>
-<li>播放过程中获取缓冲进度，获取播放进度。  </li>
-<li>视频播放完成后做些什么，是暂停还是循环播放，还是获取最后一帧图像。</li>
-</ol>
-<h2 id="播放步骤"><a href="#播放步骤" class="headerlink" title="播放步骤"></a>播放步骤</h2><h3 id="1-布局页面，初始化-AVPlayer-和-AVPlayerLayer"><a href="#1-布局页面，初始化-AVPlayer-和-AVPlayerLayer" class="headerlink" title="1. 布局页面，初始化 AVPlayer 和 AVPlayerLayer"></a>1. 布局页面，初始化 AVPlayer 和 AVPlayerLayer</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; setAVPlayer</span><br><span class="line">self.player &#x3D; [[AVPlayer alloc] init];</span><br><span class="line">_playerLayer &#x3D; [AVPlayerLayer playerLayerWithPlayer:_player];</span><br><span class="line">[self.playerView.layer addSublayer:_playerLayer];</span><br></pre></td></tr></table></figure>
-
-<h3 id="２-根据-URL-获取-AVPayerItem，并替换-AVPlayer-的-AVPlayerItem"><a href="#２-根据-URL-获取-AVPayerItem，并替换-AVPlayer-的-AVPlayerItem" class="headerlink" title="２.　根据 URL 获取 AVPayerItem，并替换 AVPlayer 的 AVPlayerItem"></a>２.　根据 URL 获取 AVPayerItem，并替换 AVPlayer 的 AVPlayerItem</h3><p>在第一步，布局初始化时，AVPlayer 并没有 AVPlayerItem，AVPlayer 提供了 <code>- (void)replaceCurrentItemWithPlayerItem:(nullable AVPlayerItem *)item;</code>  方法，用于切换视频。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (void)updatePlayerWithURL:(NSURL *)url &#123;</span><br><span class="line">    _playerItem &#x3D; [AVPlayerItem playerItemWithURL:url]; &#x2F;&#x2F; create item</span><br><span class="line">    [_player  replaceCurrentItemWithPlayerItem:_playerItem]; &#x2F;&#x2F; replaceCurrentItem</span><br><span class="line">    [self addObserverAndNotification]; &#x2F;&#x2F; 注册观察者，通知</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-KVO-获取视频信息，-观察缓冲进度"><a href="#3-KVO-获取视频信息，-观察缓冲进度" class="headerlink" title="3. KVO 获取视频信息， 观察缓冲进度"></a>3. KVO 获取视频信息， 观察缓冲进度</h3><p>观察 AVPlayerItem 的 <code>status</code> 属性，当状态变为 <code>AVPlayerStatusReadyToPlay</code> 时才可以使用。</p>
-<p>也可以观察 <code>loadedTimeRanges</code> 获取缓冲进度</p>
-<p>注册观察者：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[_playerItem addObserver:self forKeyPath:@&quot;status&quot; options:(NSKeyValueObservingOptionNew) context:nil]; &#x2F;&#x2F; 观察status属性</span><br></pre></td></tr></table></figure>
-
-<p>执行观察者方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary&lt;NSString *,id&gt; *)change context:(void *)context &#123;</span><br><span class="line">    AVPlayerItem *item &#x3D; (AVPlayerItem *)object;</span><br><span class="line">    if ([keyPath isEqualToString:@&quot;status&quot;]) &#123;</span><br><span class="line">            AVPlayerStatus status &#x3D; [[change objectForKey:@&quot;new&quot;] intValue]; &#x2F;&#x2F; 获取更改后的状态</span><br><span class="line">            if (status &#x3D;&#x3D; AVPlayerStatusReadyToPlay) &#123;</span><br><span class="line">                CMTime duration &#x3D; item.duration; &#x2F;&#x2F; 获取视频长度</span><br><span class="line">                &#x2F;&#x2F; 设置视频时间</span><br><span class="line">                [self setMaxDuration:CMTimeGetSeconds(duration)];</span><br><span class="line">                &#x2F;&#x2F; 播放</span><br><span class="line">                [self play];</span><br><span class="line">            &#125; else if (status &#x3D;&#x3D; AVPlayerStatusFailed) &#123;</span><br><span class="line">                NSLog(@&quot;AVPlayerStatusFailed&quot;);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                NSLog(@&quot;AVPlayerStatusUnknown&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        </span><br><span class="line">    &#125; else if ([keyPath isEqualToString:@&quot;loadedTimeRanges&quot;]) &#123;</span><br><span class="line">        NSTimeInterval timeInterval &#x3D; [self availableDurationRanges]; &#x2F;&#x2F; 缓冲时间</span><br><span class="line">        CGFloat totalDuration &#x3D; CMTimeGetSeconds(_playerItem.duration); &#x2F;&#x2F; 总时间</span><br><span class="line">        [self.loadedProgress setProgress:timeInterval &#x2F; totalDuration animated:YES]; &#x2F;&#x2F; 更新缓冲条</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-播放过程中响应：播放、-暂停、-拖动"><a href="#4-播放过程中响应：播放、-暂停、-拖动" class="headerlink" title="4. 播放过程中响应：播放、 暂停、 拖动"></a>4. 播放过程中响应：播放、 暂停、 拖动</h3><p>AVPlayer 提供了 <code>play</code> , <code>pause</code>, 和 <code>- (void)seekToTime:(CMTime)time completionHandler:(void (^)(BOOL finished))completionHandler</code> 方法。 </p>
-<p>在看 AVPlayer 的 seekToTime 之前，先来认识一个结构体。 </p>
-<p><strong>CMTime</strong> 是专门用于标识电影时间的结构体.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typedef struct</span><br><span class="line">&#123;</span><br><span class="line">	CMTimeValue	value;	 &#x2F;&#x2F; 帧数</span><br><span class="line">	CMTimeScale	timescale;  &#x2F;&#x2F; 帧率（影片每秒有几帧）</span><br><span class="line">	CMTimeFlags	flags;		</span><br><span class="line">	CMTimeEpoch	epoch;</span><br><span class="line">&#125; CMTime;</span><br></pre></td></tr></table></figure>
-<p>AVPlayerItem 的 duration 属性就是一个 CMTime 类型的数据。 如果我们想要获取影片的总秒数那么就可以用 duration.value / duration.timeScale 计算出来。也可以使用 CMTimeGetSeconds 函数</p>
-<p><strong>CMTimeGetSeconds(CMtime time)</strong><br>double seconds = CMTimeGetSeconds(item.duration);  // 相当于 duration.value / duration.timeScale</p>
-<p>如果一个影片为60frame（帧）每秒， 当前想要跳转到 120帧的位置，也就是两秒的位置，那么就可以创建一个 CMTime 类型数据。</p>
-<p>CMTime,通常用如下两个函数来创建.</p>
-<p><strong>CMTimeMake(int64_t value, int32_t scale)</strong><br>CMTime time1 = CMTimeMake(120, 60);</p>
-<p><strong>CMTimeMakeWithSeconds(Flout64 seconds, int32_t scale)</strong><br>CMTime time2 = CMTimeMakeWithSeconds(120, 60); </p>
-<p>CMTimeMakeWithSeconds 和CMTimeMake 区别在于，第一个函数的第一个参数可以是float，其他一样。</p>
-<p>拖拽方法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (IBAction)playerSliderValueChanged:(id)sender &#123;</span><br><span class="line">    _isSliding &#x3D; YES;</span><br><span class="line">    [self pause];</span><br><span class="line">    &#x2F;&#x2F; 跳转到拖拽秒处</span><br><span class="line">    &#x2F;&#x2F; self.playProgress.maxValue &#x3D; value &#x2F; timeScale</span><br><span class="line">    &#x2F;&#x2F; value &#x3D; progress.value * timeScale</span><br><span class="line">    &#x2F;&#x2F; CMTimemake(value, timeScale) &#x3D;  (progress.value, 1.0)</span><br><span class="line">    CMTime changedTime &#x3D; CMTimeMakeWithSeconds(self.playProgress.value, 1.0);</span><br><span class="line">    [_playerItem seekToTime:changedTime completionHandler:^(BOOL finished) &#123;</span><br><span class="line">        &#x2F;&#x2F; 跳转完成后</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-观察-AVPlayer-播放进度"><a href="#5-观察-AVPlayer-播放进度" class="headerlink" title="5. 观察 AVPlayer 播放进度"></a>5. 观察 AVPlayer 播放进度</h3><p>AVPlayerItem 是使用 KVO 模式观察状态，和 缓冲进度。而 AVPlayer 给我们直接提供了 观察播放进度更为方便的方法。 </p>
-<p><code>- (id)addPeriodicTimeObserverForInterval:(CMTime)interval queue:(nullable dispatch_queue_t)queue usingBlock:(void (^)(CMTime time))block;</code></p>
-<p>方法名如其意， “添加周期时间观察者” ，参数1 <code>interal</code> 为CMTime 类型的，参数2 为一个 返回值为空，参数为 CMTime 的block类型。 </p>
-<p>简而言之就是，每隔一段时间后执行 block。</p>
-<p>比如： 我把时间间隔设置为， 1/ 30 秒，然后 block 里面更新 UI。就是一秒钟更新 30次UI。</p>
-<p>播放进度代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 观察播放进度</span><br><span class="line">- (void)monitoringPlayback:(AVPlayerItem *)item &#123;</span><br><span class="line">    __weak typeof(self)WeakSelf &#x3D; self;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 观察间隔, CMTime 为30分之一秒</span><br><span class="line">    _playTimeObserver &#x3D; [_player addPeriodicTimeObserverForInterval:CMTimeMake(1, 30.0) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) &#123;</span><br><span class="line">        if (_touchMode !&#x3D; TouchPlayerViewModeHorizontal) &#123;</span><br><span class="line">            &#x2F;&#x2F; 获取 item 当前播放秒</span><br><span class="line">            float currentPlayTime &#x3D; (double)item.currentTime.value&#x2F; item.currentTime.timescale;</span><br><span class="line">            &#x2F;&#x2F; 更新slider, 如果正在滑动则不更新</span><br><span class="line">            if (_isSliding &#x3D;&#x3D; NO) &#123;</span><br><span class="line">                [WeakSelf updateVideoSlider:currentPlayTime];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：</strong> 给 palyer 添加了 timeObserver 后，不使用的时候记得移除 <code>removeTimeObserver</code> 否则会占用大量内存。</p>
-<p>比如，我在dealloc里面做了移除：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (void)dealloc &#123;</span><br><span class="line">    [self removeObserveAndNOtification];</span><br><span class="line">    [_player removeTimeObserver:_playTimeObserver]; &#x2F;&#x2F; 移除playTimeObserver</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="6-AVPlayerItem-通知"><a href="#6-AVPlayerItem-通知" class="headerlink" title="6. AVPlayerItem 通知"></a>6. AVPlayerItem 通知</h3><p>AVPlaerItem 播放完成后，系统会自动发送通知，通知的定义详情请见 <code>AVPlayerItem.h</code>.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* Note that NSNotifications posted by AVPlayerItem may be posted on a different thread from the one on which the observer was registered. *&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; notifications                                                                                description</span><br><span class="line">AVF_EXPORT NSString *const AVPlayerItemTimeJumpedNotification			 NS_AVAILABLE(10_7, 5_0);	&#x2F;&#x2F; the item&#39;s current time has changed discontinuously</span><br><span class="line">AVF_EXPORT NSString *const AVPlayerItemDidPlayToEndTimeNotification      NS_AVAILABLE(10_7, 4_0);   &#x2F;&#x2F; item has played to its end time</span><br><span class="line">AVF_EXPORT NSString *const AVPlayerItemFailedToPlayToEndTimeNotification NS_AVAILABLE(10_7, 4_3);   &#x2F;&#x2F; item has failed to play to its end time</span><br><span class="line">AVF_EXPORT NSString *const AVPlayerItemPlaybackStalledNotification       NS_AVAILABLE(10_9, 6_0);    &#x2F;&#x2F; media did not arrive in time to continue playback</span><br><span class="line">AVF_EXPORT NSString *const AVPlayerItemNewAccessLogEntryNotification	 NS_AVAILABLE(10_9, 6_0);	&#x2F;&#x2F; a new access log entry has been added</span><br><span class="line">AVF_EXPORT NSString *const AVPlayerItemNewErrorLogEntryNotification		 NS_AVAILABLE(10_9, 6_0);	&#x2F;&#x2F; a new error log entry has been added</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; notification userInfo key                                                                    type</span><br><span class="line">AVF_EXPORT NSString *const AVPlayerItemFailedToPlayToEndTimeErrorKey     NS_AVAILABLE(10_7, 4_3);   &#x2F;&#x2F; NSError</span><br></pre></td></tr></table></figure>
-
-<p>因此，如果我们想要在某个状态下，执行某些操作。监听 AVPlayerItem 的相关通知就行了。 比如，我想要播放完成后，暂停播放。 给<code>AVPlayerItemDidPlayToEndTimeNotification</code> 添加观察者。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];</span><br><span class="line"> </span><br><span class="line"> &#x2F;&#x2F; 播放完成后</span><br><span class="line"> - (void)playbackFinished:(NSNotification *)notification &#123;</span><br><span class="line">    NSLog(@&quot;视频播放完成通知&quot;);</span><br><span class="line">    _playerItem &#x3D; [notification object];</span><br><span class="line">    [_playerItem seekToTime:kCMTimeZero]; &#x2F;&#x2F; item 跳转到初始</span><br><span class="line">	  &#x2F;&#x2F;[_player play]; &#x2F;&#x2F; 循环播放</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>使用 AVPlayer 的时候，一定要注意 AVPlayer 、 AVPlayerLayer 和 AVPlayerItem 三者之间的关系。 AVPlayer 负责控制播放， layer 显示播放， item 提供数据，当前播放时间， 已加载情况。 Item 中一些基本的属性, status, duration, loadedTimeRanges， currentTime（当前播放时间）。</p>
-<p>最重要的还是多总结，6月份写的这个 Demo ,现在才总结，懒癌到晚期 =。 =</p>
-<p>当然，如果我写的文章有幸让你看到了最后，那么， 或许 你想要更多的功能。比如，横竖屏旋转，一些交互动画等等。 我有个简单地 demo，实现了一些小小的功能，放到了 github 上， 里面还有很多不足，多沟通交流 = W = 。 </p>
-<p><a href="https://github.com/littledogboy/AGPlayer" target="_blank" rel="noopener">githubDemo地址</a></p>
-<img src="/2016/09/21/%E5%9F%BA%E4%BA%8E-AVPlayer-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%92%AD%E6%94%BE%E5%99%A8/AVPlayer%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8.gif" class="" title="AVPlayer视频播放器">
-
-
-
-
-
-
-
-
-
-
-
+<p>edgesForExtendedLayout 默认的返回值为 UIRectEdgeAll, 我们可以 设置为 UIRectEdgeNone 或者 UIRectEdgeBottom，解决问题。</p>
+<p>如图所示：</p>
+<!-- ![](iOS-布局中的那些坑/05_已设置边缘布局.gif) -->
+<p><img src="/2016/05/20/iOS-%E5%B8%83%E5%B1%80%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/05_%E5%B7%B2%E8%AE%BE%E7%BD%AE%E8%BE%B9%E7%BC%98%E5%B8%83%E5%B1%80.gif"></p>
 
       
 
@@ -283,7 +205,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">AVPlayer</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">iOS 布局</a>
         		</li>
       		
 		</ul>
@@ -339,7 +261,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2016/09/21/%E5%9F%BA%E4%BA%8E-AVPlayer-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%92%AD%E6%94%BE%E5%99%A8/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2016/05/20/iOS-%E5%B8%83%E5%B1%80%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -353,18 +275,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/10/18/%E4%BD%BF%E7%94%A8-estimatedItemSize-%E5%AE%9E%E7%8E%B0-CollectionViewCell-%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/09/21/%E5%9F%BA%E4%BA%8E-AVPlayer-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%92%AD%E6%94%BE%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          使用 estimatedItemSize 实现 CollectionViewCell 自适应高度
+          基于 AVPlayer 自定义播放器
         
       </div>
     </a>
   
   
-    <a href="/2016/05/20/iOS-%E5%B8%83%E5%B1%80%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">iOS 布局中的那些坑</div>
+    <a href="/2015/10/08/Hexo%E6%95%99%E7%A8%8B-%E4%B8%80-%E2%80%94%E2%80%94%E6%90%AD%E5%BB%BA%E5%90%84%E4%BA%BA%E5%8D%9A%E5%AE%A2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">GitHub + Hexo 搭建个人博客</div>
       <i class="icon-circle-right"></i>
     </a>
   
