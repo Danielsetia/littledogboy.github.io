@@ -20,7 +20,8 @@
 <meta property="article:published_time" content="2023-05-15T14:24:24.000Z">
 <meta property="article:modified_time" content="2023-05-15T14:24:24.000Z">
 <meta property="article:author" content="ShuminWu">
-<meta property="article:tag" content="SwiftUI iOS">
+<meta property="article:tag" content="SwiftUI">
+<meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2023/05/15/SwiftUI-Frame/frame%E6%95%88%E6%9E%9C%E5%9B%BE.png">
   
@@ -167,6 +168,8 @@
 <p>而 SwiftUI 中 frame 则是两个函数，一个是不带理想值的版本，一个是有理想值的版本。这里暂且只看不带理想值的简短版本 <code>frame(width:height:alignment:)</code>，完整的函数声明是这样的：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">frame</span>(</span></span><br><span class="line"><span class="function">    <span class="params">width</span>: <span class="type">CGFloat</span>? <span class="operator">=</span> <span class="literal">nil</span>,</span></span><br><span class="line"><span class="function">    <span class="params">height</span>: <span class="type">CGFloat</span>? <span class="operator">=</span> <span class="literal">nil</span>,</span></span><br><span class="line"><span class="function">    <span class="params">alignment</span>: <span class="type">Alignment</span> <span class="operator">=</span> .center</span></span><br><span class="line"><span class="function">)</span> -&gt; <span class="keyword">some</span> <span class="type">View</span></span><br></pre></td></tr></table></figure>
 
+<span id="more"></span>
+
 <p>函数有三个参数且都有默认值，返回值为遵守了 View 协议的不透明类型。</p>
 <p>很多 SwiftUI 的书籍上都再三强调了， <code>frame</code> 这个修饰器并没有改变 View 原有的某个属性（比如宽高），而是返回了一个 新具有新属性的 视图 来包装原有的 视图。</p>
 <p>上面这句话理解起来有困难，毕竟这也是坑点之一，那么请根据下面这段代码和效果图再来看。</p>
@@ -206,7 +209,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">SwiftUI iOS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">SwiftUI</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
         		</li>
       		
 		</ul>
@@ -275,6 +282,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2023/06/07/%E7%94%B1-TextField-Re-render-%E5%AF%BC%E8%87%B4-CPU-%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98-%EF%BC%8C-%E5%AF%B9-SwiftUI-%E6%B8%B2%E6%9F%93%E5%92%8C%E5%B1%9E%E6%80%A7%E4%BF%AE%E9%A5%B0%E7%9A%84%E6%80%9D%E8%80%83/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          由 TextField Re-render 导致 CPU 占用过高 ， 对 SwiftUI 渲染和属性修饰的思考
+        
+      </div>
+    </a>
   
   
     <a href="/2020/03/26/Hexo-%E4%BD%BF%E7%94%A8-MD-%E8%AF%AD%E6%B3%95%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/" id="article-nav-older" class="article-nav-link-wrap">
@@ -404,23 +420,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">iOS 约束</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">iOS 布局</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">AVPlayer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">iOS 旋转</a>
+                <a href="javascript:void(0)" class="js-tag color3">SwiftUI</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">SwiftUI iOS</a>
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">UI布局</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">UI约束</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">屏幕旋转</a>
               </li>
             
             <div class="clearfix"></div>

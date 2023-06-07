@@ -6,15 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: AVPlayer | ShuminWu の 魔法协会</title>
+  <title>由 TextField Re-render 导致 CPU 占用过高 ， 对 SwiftUI 渲染和属性修饰的思考 | ShuminWu の 魔法协会</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ShuminWu の 魔法协会">
-<meta property="og:url" content="http://yoursite.com/tags/AVPlayer/index.html">
+  <meta name="description" content="CPU 占用率 100 ，哪里出错了？在写爬虫玩具的搜索页面时用了一个可以自动换行的 WrappingHStack, 最终实现的效果如图所示：  关键代码如下： 1234567891011121314151617181920212223@StateObject private var vm &#x3D; SearchViewModel()@State private var isShowDetailView">
+<meta property="og:type" content="article">
+<meta property="og:title" content="由 TextField Re-render 导致 CPU 占用过高 ， 对 SwiftUI 渲染和属性修饰的思考">
+<meta property="og:url" content="http://yoursite.com/2023/06/07/%E7%94%B1-TextField-Re-render-%E5%AF%BC%E8%87%B4-CPU-%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98-%EF%BC%8C-%E5%AF%B9-SwiftUI-%E6%B8%B2%E6%9F%93%E5%92%8C%E5%B1%9E%E6%80%A7%E4%BF%AE%E9%A5%B0%E7%9A%84%E6%80%9D%E8%80%83/index.html">
 <meta property="og:site_name" content="ShuminWu の 魔法协会">
+<meta property="og:description" content="CPU 占用率 100 ，哪里出错了？在写爬虫玩具的搜索页面时用了一个可以自动换行的 WrappingHStack, 最终实现的效果如图所示：  关键代码如下： 1234567891011121314151617181920212223@StateObject private var vm &#x3D; SearchViewModel()@State private var isShowDetailView">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2023/06/07/%E7%94%B1-TextField-Re-render-%E5%AF%BC%E8%87%B4-CPU-%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98-%EF%BC%8C-%E5%AF%B9-SwiftUI-%E6%B8%B2%E6%9F%93%E5%92%8C%E5%B1%9E%E6%80%A7%E4%BF%AE%E9%A5%B0%E7%9A%84%E6%80%9D%E8%80%83/%E6%90%9C%E7%B4%A2%E9%A1%B5.png">
+<meta property="og:image" content="http://yoursite.com/2023/06/07/%E7%94%B1-TextField-Re-render-%E5%AF%BC%E8%87%B4-CPU-%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98-%EF%BC%8C-%E5%AF%B9-SwiftUI-%E6%B8%B2%E6%9F%93%E5%92%8C%E5%B1%9E%E6%80%A7%E4%BF%AE%E9%A5%B0%E7%9A%84%E6%80%9D%E8%80%83/View%E6%A0%91.png">
+<meta property="og:image" content="http://yoursite.com/2023/06/07/%E7%94%B1-TextField-Re-render-%E5%AF%BC%E8%87%B4-CPU-%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98-%EF%BC%8C-%E5%AF%B9-SwiftUI-%E6%B8%B2%E6%9F%93%E5%92%8C%E5%B1%9E%E6%80%A7%E4%BF%AE%E9%A5%B0%E7%9A%84%E6%80%9D%E8%80%83/%E5%B0%81%E8%A3%85%E5%90%8E%E7%9A%84View%E6%A0%91.png">
+<meta property="article:published_time" content="2023-06-07T14:50:55.000Z">
+<meta property="article:modified_time" content="2023-06-07T14:50:55.000Z">
 <meta property="article:author" content="ShuminWu">
+<meta property="article:tag" content="SwiftUI">
+<meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2023/06/07/%E7%94%B1-TextField-Re-render-%E5%AF%BC%E8%87%B4-CPU-%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98-%EF%BC%8C-%E5%AF%B9-SwiftUI-%E6%B8%B2%E6%9F%93%E5%92%8C%E5%B1%9E%E6%80%A7%E4%BF%AE%E9%A5%B0%E7%9A%84%E6%80%9D%E8%80%83/%E6%90%9C%E7%B4%A2%E9%A1%B5.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -134,42 +144,90 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-由-TextField-Re-render-导致-CPU-占用过高-，-对-SwiftUI-渲染和属性修饰的思考" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/09/21/%E5%9F%BA%E4%BA%8E-AVPlayer-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%92%AD%E6%94%BE%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2016-09-21T10:48:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-21</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/21/%E5%9F%BA%E4%BA%8E-AVPlayer-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%92%AD%E6%94%BE%E5%99%A8/">基于 AVPlayer 自定义播放器</a>
+    <h1 class="article-title" itemprop="name">
+      由 TextField Re-render 导致 CPU 占用过高 ， 对 SwiftUI 渲染和属性修饰的思考
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2023/06/07/%E7%94%B1-TextField-Re-render-%E5%AF%BC%E8%87%B4-CPU-%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98-%EF%BC%8C-%E5%AF%B9-SwiftUI-%E6%B8%B2%E6%9F%93%E5%92%8C%E5%B1%9E%E6%80%A7%E4%BF%AE%E9%A5%B0%E7%9A%84%E6%80%9D%E8%80%83/" class="archive-article-date">
+  	<time datetime="2023-06-07T14:50:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="CPU-占用率-100-，哪里出错了？"><a href="#CPU-占用率-100-，哪里出错了？" class="headerlink" title="CPU 占用率 100 ，哪里出错了？"></a>CPU 占用率 100 ，哪里出错了？</h2><p>在写爬虫玩具的搜索页面时用了一个可以自动换行的 <a target="_blank" rel="noopener" href="https://github.com/dkk/WrappingHStack">WrappingHStack</a>, 最终实现的效果如图所示：</p>
+<p><img src="/2023/06/07/%E7%94%B1-TextField-Re-render-%E5%AF%BC%E8%87%B4-CPU-%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98-%EF%BC%8C-%E5%AF%B9-SwiftUI-%E6%B8%B2%E6%9F%93%E5%92%8C%E5%B1%9E%E6%80%A7%E4%BF%AE%E9%A5%B0%E7%9A%84%E6%80%9D%E8%80%83/%E6%90%9C%E7%B4%A2%E9%A1%B5.png" alt="搜索页"></p>
+<p>关键代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@StateObject</span> <span class="keyword">private</span> <span class="keyword">var</span> vm <span class="operator">=</span> <span class="type">SearchViewModel</span>()</span><br><span class="line"><span class="meta">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> isShowDetailView <span class="operator">=</span> <span class="literal">false</span></span><br><span class="line"><span class="meta">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> searchKey <span class="operator">=</span> <span class="string">&quot;&quot;</span> <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">NavigationView</span> &#123;</span><br><span class="line">    <span class="type">VStack</span> &#123;</span><br><span class="line">        <span class="type">NavigationLink</span>(isActive: <span class="variable">$isShowDetailView</span>) &#123;</span><br><span class="line">                        <span class="type">HomeView</span>(searchKey: searchKey) <span class="comment">// 3</span></span><br><span class="line">                    &#125; label: &#123;</span><br><span class="line">                        <span class="type">EmptyView</span>()</span><br><span class="line">                    &#125;</span><br><span class="line">                    </span><br><span class="line">        <span class="type">WrappingHStack</span>(tags) &#123; tag <span class="keyword">in</span></span><br><span class="line">            <span class="comment">// ... ...</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    .searchable(text: <span class="variable">$searchKey</span>) <span class="comment">// 2</span></span><br><span class="line">    .onSubmit(of: .search) &#123;</span><br><span class="line">        <span class="keyword">self</span>.isShowDetailView <span class="operator">=</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>虽然效果不错却发现点击搜索框后，只要互动就卡的不行，一旦更改了搜索框的文本，比如键入字母等操作，就会再次执行 body，最终导致 cpu 占用狂飙到 100。根本无法正常使用。</p>
+<span id="more"></span>
+
+<p>与输入框绑定的 searchKey 是 @State 修饰的，在 SwiftUI 中 @State 修饰的数据发生变化，则会引发与之有关 View 树的重新计算。在上面代码中分别在 1， 2， 3处使用了 searchKey。 代码 1 ， 用 @State 修饰 searchKey 以便后续使用；代码2，搜索框的数据用 $searchKey 绑定，实时更新 searchKey 数据；代码3， 当点击键盘的 return 按钮后，触发 isShowDetailView，跳转到 ResultView ，并把 searchKey 当前的值传递过去。</p>
+<p>所以一旦操作键盘就会导致 searchKey 发生改变， searchKey 改变后发现 body 中有使用 searchKey ，而 body 中的 WrappingHStack 中有又有几百个数据（发生卡顿时的 tags 有五百多个数据）。每操作一个字符，就要重新计算几百个视图的位置。 这就是导致 cpu 占用过高最终卡顿的原因。</p>
+<p>TextField 的数据在 body 中使用，body 中又有复杂布局，最终造成 View 树频繁 Re-render。</p>
+<p>既然原因找到了，那么就来思考一下如何解决。 最终想要的结果是，既要获取 TextField 的数据，又不想要 WrappingHStack 再次计算。</p>
+<h2 id="思考-解决方法"><a href="#思考-解决方法" class="headerlink" title="思考 解决方法"></a>思考 解决方法</h2><p>那么第三库 <a target="_blank" rel="noopener" href="https://github.com/dkk/WrappingHStack">WrappingHStack</a> 是不是存在问题呢？</p>
+<p>于是就去看了看 <a target="_blank" rel="noopener" href="https://github.com/dkk/WrappingHStack">WrappingHStack</a> 的 Issue，发现情况差不多的也是高 cpu 占用 <a target="_blank" rel="noopener" href="https://github.com/dkk/WrappingHStack/issues/34"># WrappingHStack causes high CPU usage</a>，但点进去发现不一样，那老哥创建了 300 个 WrappingHStack 滚动测试，而我仅有一个视图，只是数据多一点。顺便又看了看源码，暂时没发现问题（其实是仅能看懂代码优化谈不上）。</p>
+<p>既然暂时无法从第三方库找出问题，那代码中数据改动能不触发 body 的重计算就好了。</p>
+<h3 id="方式一：SwiftUI-View-树"><a href="#方式一：SwiftUI-View-树" class="headerlink" title="方式一：SwiftUI View 树"></a>方式一：SwiftUI View 树</h3><p>《SwiftUI 编程思想》中有讲过 SwiftUI 只会重新去执行那些使用了 @State 属性的 view 的 body。上面代码的简略 View 图，如图所示：</p>
+<p><img src="/2023/06/07/%E7%94%B1-TextField-Re-render-%E5%AF%BC%E8%87%B4-CPU-%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98-%EF%BC%8C-%E5%AF%B9-SwiftUI-%E6%B8%B2%E6%9F%93%E5%92%8C%E5%B1%9E%E6%80%A7%E4%BF%AE%E9%A5%B0%E7%9A%84%E6%80%9D%E8%80%83/View%E6%A0%91.png" alt="View树"></p>
+<p>于是尝试了下把 WrappingHStack 封装到一个子视图里。</p>
+<p><img src="/2023/06/07/%E7%94%B1-TextField-Re-render-%E5%AF%BC%E8%87%B4-CPU-%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98-%EF%BC%8C-%E5%AF%B9-SwiftUI-%E6%B8%B2%E6%9F%93%E5%92%8C%E5%B1%9E%E6%80%A7%E4%BF%AE%E9%A5%B0%E7%9A%84%E6%80%9D%E8%80%83/%E5%B0%81%E8%A3%85%E5%90%8E%E7%9A%84View%E6%A0%91.png" alt="封装后的View树"></p>
+<p>虽然操作键盘还是会触发 body，<strong>但是 Subview 的 body 不会再被触发。问题解决</strong>。</p>
+<p>如果不封装视图，不改变 view 树层级，仅通过属性包装器能不能解决呢？</p>
+<h3 id="方式二：属性包装器"><a href="#方式二：属性包装器" class="headerlink" title="方式二：属性包装器"></a>方式二：属性包装器</h3><p>常用的属性包装器有 @State 、 @StateObject 、@ObservedObject、@Enviroment、@EnviromentObject、 @Binding 等。</p>
+<ul>
+<li>@State 用于修饰值类型</li>
+<li>@StateObject 用于修饰引用类型，生命周期与所在 View 一致</li>
+<li>@ObservedObject 用于修饰引用类型，通常用于传递数据</li>
+<li>@Enviroment 用来修饰从环境中获取的值类型，用于上下级传递数据</li>
+<li>@EnviromentObject 用来修饰从环境中获取的引用类型，用于上下级传递数据</li>
+<li>@Binding 可用于修饰值类型和引用类型，用于双向数据绑定</li>
+</ul>
+<p>这里仅简要说明一下基本用法，详细用法和坑点还请参阅其它资料。</p>
+<p>由于代码中的 <code>.searchable(text: $searchKey)</code> 搜索框必须给一个绑定值, 这样搜索内容可以被记录到，搜索内容会在 body 的 <code>NavigationLink</code> 的 destination 中使用。</p>
+<p>@State 修饰的 searchKey 显然不符合我们的要求，会导致 body 重新计算。</p>
+<p>把 searchKey 放到 @StateObject 修饰的 ViewModel 中，如果以 @Published 修饰 searchKey 同样会引起 body 重新计算；如果不加任何修饰, 则传递到下个页面时接收不到 searchKey 的值，简略代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SearchViewModel</span>: <span class="title">ObservableObject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> searchKey: <span class="type">String</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@StateObject</span> <span class="keyword">private</span> <span class="keyword">var</span> vm <span class="operator">=</span> <span class="type">SearchViewModel</span>()</span><br><span class="line"></span><br><span class="line">searchable(text: <span class="variable">$vm</span>.searchKey <span class="comment">// 绑定</span></span><br><span class="line"></span><br><span class="line"><span class="type">HomeView</span>(searchKey: vm.searchKey)</span><br></pre></td></tr></table></figure>
+
+<p>用 @Enviroment 来传值，暂不考虑，因为用来传递的类型要遵守 <code>EnvironmentKey</code> 协议，要写 <code>extension EnvironmentValues</code> 扩展，要写 <code>extension View</code> 扩展，然后用 @Enviroment 接收。 非系统 key 值这样一套下来太繁琐了。</p>
+<p>searchKey 作为一个 @ObservedObject 修饰的引用类型 SearchKey 的属性，用 @EnviromentObject 把 SearchKey 传递给后一个页面，<strong>不会引起 body 的重计算</strong>，但这样传值略显麻烦，且后一个页面被 @EnviromentObject 修饰的属性访问时没有值会引起崩溃，太不安全。简略代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SearchKey</span>: <span class="title">ObservableObject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> searchKey: <span class="type">String</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ObservedObject</span> <span class="keyword">var</span> searchKey <span class="operator">=</span> <span class="type">SearchKey</span>()</span><br><span class="line"></span><br><span class="line">.searchable(text: <span class="variable">$searchKey</span>.searchKey <span class="comment">// 绑定</span></span><br><span class="line">            </span><br><span class="line"><span class="type">HomeView</span>().environmentObject(searchKey) </span><br></pre></td></tr></table></figure>
+
+<p>最后再来看看 searchKey 作为一个 @ObservedObject 修饰的引用类型 SearchKey 属性，同时把 SearchKey 传递给后一个页面。<br><strong>不会触发 body 重新计算，同时后一个页面也可以获取到值</strong><br>简略代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SearchKey</span>: <span class="title">ObservableObject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> searchKey: <span class="type">String</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ObservedObject</span> <span class="keyword">var</span> searchKey <span class="operator">=</span> <span class="type">SearchKey</span>()</span><br><span class="line"></span><br><span class="line">.searchable(text: <span class="variable">$searchKey</span>.searchKey <span class="comment">// 绑定</span></span><br><span class="line"></span><br><span class="line"><span class="type">HomeView</span>(searchKey: searchKey)</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在平时开发中尽量做好视图的封装，不要让多个视图在同一个 body 中。或者考虑使用 @ObservedObject 来传值。</p>
+<p>PS: 该文章的具体代码可以在<a target="_blank" rel="noopener" href="https://github.com/littledogboy/shuoren/blob/master/shuoren/Search/SearchView.swift">这里找到</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><h3 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a>书籍</h3><p><a target="_blank" rel="noopener" href="https://objccn.io/products/thinking-in-swiftui">《SwiftUI编程思想》</a></p>
+<p><a target="_blank" rel="noopener" href="https://objccn.io/products/swift-ui">《SwiftUI与Combine编程》</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.amazon.com/SwiftUI-Absolute-Beginners-Program-Controls/dp/1484255151">《SwiftUI for Absolute Beginners》</a></p>
+<h3 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h3><p><a target="_blank" rel="noopener" href="https://onevcat.com/2021/01/swiftui-state/">关于 SwiftUI State 的一些细节</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.fatbobman.com/posts/avoid_repeated_calculations_of_SwiftUI_views/">避免 SwiftUI 视图的重复计算</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">AVPlayer</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">SwiftUI</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -179,19 +237,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2023/06/07/%E7%94%B1-TextField-Re-render-%E5%AF%BC%E8%87%B4-CPU-%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98-%EF%BC%8C-%E5%AF%B9-SwiftUI-%E6%B8%B2%E6%9F%93%E5%92%8C%E5%B1%9E%E6%80%A7%E4%BF%AE%E9%A5%B0%E7%9A%84%E6%80%9D%E8%80%83/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2023/05/15/SwiftUI-Frame/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SwiftUI Frame</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -214,9 +359,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
