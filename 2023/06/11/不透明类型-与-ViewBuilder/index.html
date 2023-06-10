@@ -6,14 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: iOS | ShuminWu の 魔法协会</title>
+  <title>不透明类型 与 @ViewBuilder | ShuminWu の 魔法协会</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ShuminWu の 魔法协会">
-<meta property="og:url" content="http://yoursite.com/tags/iOS/index.html">
+  <meta name="description" content="学习 SwiftUI 肯定要看 View 协议，下面是 View 协议的相关代码。 12345678910111213141516171819202122232425public protocol View &amp;#123;    &#x2F;&#x2F;&#x2F; The type of view representing the body of this view.    &#x2F;&#x2F;&#x2F;    &#x2F;&#x2F;&#x2F; When you create">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不透明类型 与 @ViewBuilder">
+<meta property="og:url" content="http://yoursite.com/2023/06/11/%E4%B8%8D%E9%80%8F%E6%98%8E%E7%B1%BB%E5%9E%8B-%E4%B8%8E-ViewBuilder/index.html">
 <meta property="og:site_name" content="ShuminWu の 魔法协会">
+<meta property="og:description" content="学习 SwiftUI 肯定要看 View 协议，下面是 View 协议的相关代码。 12345678910111213141516171819202122232425public protocol View &amp;#123;    &#x2F;&#x2F;&#x2F; The type of view representing the body of this view.    &#x2F;&#x2F;&#x2F;    &#x2F;&#x2F;&#x2F; When you create">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-06-10T16:08:11.000Z">
+<meta property="article:modified_time" content="2023-06-10T16:08:11.000Z">
 <meta property="article:author" content="ShuminWu">
+<meta property="article:tag" content="SwiftUI">
+<meta property="article:tag" content="Swift">
 <meta name="twitter:card" content="summary">
   
   
@@ -134,36 +140,88 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-不透明类型-与-ViewBuilder" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/06/07/%E7%94%B1-TextField-Re-render-%E5%AF%BC%E8%87%B4-CPU-%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98-%EF%BC%8C-%E5%AF%B9-SwiftUI-%E6%B8%B2%E6%9F%93%E5%92%8C%E5%B1%9E%E6%80%A7%E4%BF%AE%E9%A5%B0%E7%9A%84%E6%80%9D%E8%80%83/" class="archive-article-date">
-  	<time datetime="2023-06-07T14:50:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-07</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/06/07/%E7%94%B1-TextField-Re-render-%E5%AF%BC%E8%87%B4-CPU-%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98-%EF%BC%8C-%E5%AF%B9-SwiftUI-%E6%B8%B2%E6%9F%93%E5%92%8C%E5%B1%9E%E6%80%A7%E4%BF%AE%E9%A5%B0%E7%9A%84%E6%80%9D%E8%80%83/">由 TextField Re-render 导致 CPU 占用过高 ， 对 SwiftUI 渲染和属性修饰的思考</a>
+    <h1 class="article-title" itemprop="name">
+      不透明类型 与 @ViewBuilder
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2023/06/11/%E4%B8%8D%E9%80%8F%E6%98%8E%E7%B1%BB%E5%9E%8B-%E4%B8%8E-ViewBuilder/" class="archive-article-date">
+  	<time datetime="2023-06-10T16:08:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学习 SwiftUI 肯定要看 View 协议，下面是 View 协议的相关代码。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">View</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The type of view representing the body of this view.</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// When you create a custom view, Swift infers this type from your</span></span><br><span class="line">    <span class="comment">/// implementation of the required ``View/body-swift.property`` property.</span></span><br><span class="line">    <span class="keyword">associatedtype</span> <span class="type">Body</span> : <span class="type">View</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The content and behavior of the view.</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// When you implement a custom view, you must implement a computed</span></span><br><span class="line">    <span class="comment">/// `body` property to provide the content for your view. Return a view</span></span><br><span class="line">    <span class="comment">/// that&#x27;s composed of built-in views that SwiftUI provides, plus other</span></span><br><span class="line">    <span class="comment">/// composite views that you&#x27;ve already defined:</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">///     struct MyView: View &#123;</span></span><br><span class="line">    <span class="comment">///         var body: some View &#123;</span></span><br><span class="line">    <span class="comment">///             Text(&quot;Hello, World!&quot;)</span></span><br><span class="line">    <span class="comment">///         &#125;</span></span><br><span class="line">    <span class="comment">///     &#125;</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// For more information about composing views and a view hierarchy,</span></span><br><span class="line">    <span class="comment">/// see &lt;doc:Declaring-a-Custom-View&gt;.</span></span><br><span class="line">    <span class="meta">@ViewBuilder</span> <span class="keyword">var</span> body: <span class="keyword">Self</span>.<span class="type">Body</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>协议中， <code>Body</code> 是一个关联类型，由实例属性 <code>body</code> 推断出来的。 <code>body</code> 是一个被 <code>@ViewBuilder</code> 修饰的，可读的实例属性。感到疑惑的就是 some View 到底是个什么东西，以及 @ViewBuilder 是干嘛的。</p>
+<span id="more"></span>
+
+<p>读了翻译版 <a target="_blank" rel="noopener" href="https://swiftgg.gitbook.io/swift/swift-jiao-cheng/23_opaque_types">不透明类型</a> 和原版 <a target="_blank" rel="noopener" href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/opaquetypes/">Opaque and Boxed Types</a> 初步对不透明类型有了个大概了解。</p>
+<h2 id="不透明类型"><a href="#不透明类型" class="headerlink" title="不透明类型"></a>不透明类型</h2><p>不透明类型通常用于<strong>约束可读属性 或者 函数的返回值</strong>，隐藏类型信息，保证类型的一致性。</p>
+<p>语法： <code>: some 某协议名</code> ，表示存在一种类型，该类型遵守某协议。</p>
+<p>不透明类型的三大特征：</p>
+<ol>
+<li>由实现者决定类型</li>
+<li>类型一致，可以使用操作符。</li>
+<li>返回值类型可以嵌套。</li>
+</ol>
+<p>与泛型相比，泛型的类型由调用方指定，不透明类型则是由实现方决定。</p>
+<p>与协议类型相比，不透明类型因为类型一致，可以使用 比较 等操作符。并且不透明类型作为返回类型可以嵌套。</p>
+<p>比如:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Rectangle</span>()</span><br><span class="line">    .fill(<span class="type">Color</span>.green)</span><br><span class="line">    .frame(width: <span class="number">50</span>, height: <span class="number">50</span>)</span><br><span class="line">    .border(<span class="type">Color</span>.yellow, width: <span class="number">2</span>) </span><br></pre></td></tr></table></figure>
+
+<p>.fill .frame .border 的返回值类型都是 some View。</p>
+<p>协议类型作为返回类型则不可以嵌套，详见 Swift 的一个官方说明 <a target="_blank" rel="noopener" href="https://github.com/apple/swift/blob/main/userdocs/diagnostics/protocol-type-non-conformance.md">协议类型不可以遵守协议</a></p>
+<p>所以 View 协议的 body 类型是 <code>some View</code> 。</p>
+<p>那么为啥要用 <code>@ViewBuilder</code> 修饰呢? 这就要不得不说 some View 返回类型的一致性了。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">truct <span class="type">SomeView</span>: <span class="type">View</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> x: <span class="type">Bool</span> <span class="operator">=</span> <span class="literal">false</span></span><br><span class="line">    <span class="keyword">var</span> content: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> x &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="type">Text</span>(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="type">Text</span>(<span class="string">&quot;2&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比如在上面代码中，content 的 getter 中使用了 if 语句，但返回值都是 Text 类型，返回类型一致编译器不会报错。但如果改为下面的代码中，一个分支返回 Text 类型，一个分支返回 Button 类型就会报错了。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 报错：</span></span><br><span class="line"><span class="comment">// Function declares an opaque return type, but the return statements in its // body do not have matching underlying types</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SomeView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x: <span class="type">Bool</span> <span class="operator">=</span> <span class="literal">false</span></span><br><span class="line">    <span class="keyword">var</span> content: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> x &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="type">Text</span>(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="type">Button</span>(<span class="string">&quot;2&quot;</span>)&#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>加上 @ViewBuilder 试一试，发现还是会报错。代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SomeView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x: <span class="type">Bool</span> <span class="operator">=</span> <span class="literal">false</span></span><br><span class="line">    <span class="meta">@ViewBuilder</span> <span class="keyword">var</span> content: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> x &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="type">Text</span>(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="type">Button</span>(<span class="string">&quot;2&quot;</span>)&#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是去掉各个分支中的 return 就不会报错了，代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SomeView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x: <span class="type">Bool</span> <span class="operator">=</span> <span class="literal">false</span></span><br><span class="line">    <span class="meta">@ViewBuilder</span> <span class="keyword">var</span> content: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> x &#123;</span><br><span class="line">            <span class="type">Text</span>(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">Button</span>(<span class="string">&quot;2&quot;</span>)&#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="ViewBuilder"><a href="#ViewBuilder" class="headerlink" title="@ViewBuilder"></a>@ViewBuilder</h2><p>这用到了 Swift 语言的一个特性， <a target="_blank" rel="noopener" href="https://github.com/apple/swift-evolution/blob/main/proposals/0289-result-builders.md">Result builders</a> 。</p>
+<p>ViewBuilder 正是基于中 Result builders 这一特性，延伸出的专门用于构建视图的属性包装器。</p>
+<p>上面代码中的 if else 返回两种类型视图，被 <a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/swiftui/viewbuilder">ViewBuilder</a> 中的</p>
+<p><code>static func buildEither&lt;TrueContent, FalseContent&gt;(second: FalseContent) -&gt; _ConditionalContent&lt;TrueContent, FalseContent&gt; where TrueContent : View, FalseContent : View</code></p>
+<p>封装为了 <code>_ConditionalContent&lt;TrueContent, FalseContent&gt;</code> 一个条件视图, 这就保证了类型的一致性。</p>
+<p>ViewBuilder 还有适用于 <code>body</code> 中不同情况不同参数的其它方法，这里就不一一列举了。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>感觉 View 协议还有许多神秘的地方，这里仅仅是看到了暴漏出的 不透明类型 和 ViewBuilder，还有许多东西值得去探索。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/opaquetypes/">Opaque and Boxed Types</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/apple/swift/blob/main/userdocs/diagnostics/protocol-type-non-conformance.md"> Protocol Types Cannot Conform to Protocols</a></p>
+<p><a target="_blank" rel="noopener" href="https://forums.swift.org/t/allowing-self-conformance-for-protocols/39841">Allowing self-conformance for protocols</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.process-one.net/blog/the-concepts-behind-swiftui-what-is-the-keyword-some-doing/">The concepts behind SwiftUI: What is the keyword “some” doing?</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/books/ios-swiftui/why-does-swiftui-use-some-view-for-its-view-type">Why does SwiftUI use “some View” for its view type?</a></p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/33112559/protocol-doesnt-conform-to-itself">Protocol doesn’t conform to itself?</a></p>
+<p><a target="_blank" rel="noopener" href="https://onevcat.com/2019/06/swift-ui-firstlook/">SwiftUI 的一些初步探索 (一)</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/apple/swift-evolution/blob/main/proposals/0289-result-builders.md">Result builders</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/swiftui/viewbuilder">ViewBuilder</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.fatbobman.com/posts/viewBuilder1/">ViewBuilder 研究（上）—— 掌握 Result builders</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.fatbobman.com/posts/viewBuilder2/">ViewBuilder 研究（下） —— 从模仿中学习</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -173,245 +231,112 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/05/15/SwiftUI-Frame/" class="archive-article-date">
-  	<time datetime="2023-05-15T14:24:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/05/15/SwiftUI-Frame/">SwiftUI Frame</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">SwiftUI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/11/14/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E5%BC%BA%E5%88%B6%E5%B1%8F%E5%B9%95%E6%97%8B%E8%BD%AC%E7%9A%84/" class="archive-article-date">
-  	<time datetime="2016-11-13T18:48:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/11/14/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E5%BC%BA%E5%88%B6%E5%B1%8F%E5%B9%95%E6%97%8B%E8%BD%AC%E7%9A%84/">我是如何分析强制屏幕旋转的</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">屏幕旋转</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2023/06/11/%E4%B8%8D%E9%80%8F%E6%98%8E%E7%B1%BB%E5%9E%8B-%E4%B8%8E-ViewBuilder/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/10/18/%E4%BD%BF%E7%94%A8-estimatedItemSize-%E5%AE%9E%E7%8E%B0-CollectionViewCell-%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/" class="archive-article-date">
-  	<time datetime="2016-10-17T18:09:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-18</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2023/06/07/%E7%94%B1-TextField-Re-render-%E5%AF%BC%E8%87%B4-CPU-%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98-%EF%BC%8C-%E5%AF%B9-SwiftUI-%E6%B8%B2%E6%9F%93%E5%92%8C%E5%B1%9E%E6%80%A7%E4%BF%AE%E9%A5%B0%E7%9A%84%E6%80%9D%E8%80%83/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">由 TextField Re-render 导致 CPU 占用过高 ， 对 SwiftUI 渲染和属性修饰的思考</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/10/18/%E4%BD%BF%E7%94%A8-estimatedItemSize-%E5%AE%9E%E7%8E%B0-CollectionViewCell-%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6/">使用 estimatedItemSize 实现 CollectionViewCell 自适应高度</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">UI约束</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/09/21/%E5%9F%BA%E4%BA%8E-AVPlayer-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%92%AD%E6%94%BE%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2016-09-21T10:48:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/21/%E5%9F%BA%E4%BA%8E-AVPlayer-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%92%AD%E6%94%BE%E5%99%A8/">基于 AVPlayer 自定义播放器</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">AVPlayer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/20/iOS-%E5%B8%83%E5%B1%80%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/" class="archive-article-date">
-  	<time datetime="2016-05-20T14:35:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/20/iOS-%E5%B8%83%E5%B1%80%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/">iOS 布局中的那些坑</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">UI布局</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -434,9 +359,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
